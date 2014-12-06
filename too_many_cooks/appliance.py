@@ -49,7 +49,7 @@ class VegieFreezer(Appliance):
         super().__init__(image_path)
 
 
-class DessertFreezer(Appliance)
+class DessertFreezer(Appliance):
     def __init__(self, image_path):
         super().__init__(image_path)
 
