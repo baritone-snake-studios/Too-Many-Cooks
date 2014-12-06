@@ -5,18 +5,40 @@ class Appliance(Tile):
     def __init__(self, image_path):
         super().__init__(image=image_path, is_colliding=True)
 
-    def use(self):
+    def use(self, user):
         pass
+
+
+class CantGetItem(Exception):
+    pass
+
+
+class Storage(Tile):
+    def __init__(self, image, contents=None):
+        super().__init__(self, image)
+        self.contents = contents
+
+    def use(self, user):
+        if user.hands_are_full():
+            raise CantGetItem
+
+        ingr_1, ingr_2 = user.get_ingredients()
 
 
 class Grill(Appliance):
     def __init__(self, image_path):
         super().__init__(image_path)
 
+    def use(self, user):
+        ingr_1, ingr_2 = user.get_ingredients()
+
 
 class Fryer(Appliance):
     def __init__(self, image_path):
         super().__init__(image_path)
+
+    def use(self, user):
+        ingr_1, ingr_2 = user.get_ingredients()
 
 
 class ChoppingBlock(Appliance):
@@ -24,33 +46,25 @@ class ChoppingBlock(Appliance):
         super().__init__(image_path)
 
 
+    def use(self, user):
+        ingr_1, ingr_2 = user.get_ingredients()
+
+
 class Oven(Appliance):
     def __init__(self, image_path):
         super().__init__(image_path)
+
+
+    def use(self, user):
+        ingr_1, ingr_2 = user.get_ingredients()
 
 
 class CounterTop(Appliance):
     def __init__(self, image_path):
         super().__init__(image_path)
 
+    def use(self, user):
+        ingr_1, ingr_2 = user.get_ingredients()
 
-class Barrel(Appliance):
-    def __init__(self, image_path):
-        super().__init__(image_path)
-
-
-class Fridge(Appliance):
-    def __init__(self, image_path):
-        super().__init__(image_path)
-
-
-class VegieFreezer(Appliance):
-    def __init__(self, image_path):
-        super().__init__(image_path)
-
-
-class DessertFreezer(Appliance):
-    def __init__(self, image_path):
-        super().__init__(image_path)
 
 
