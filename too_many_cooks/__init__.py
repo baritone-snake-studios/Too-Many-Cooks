@@ -1,1 +1,3 @@
-__author__ = 'neil@everymundo.com'
+
+class GlobalVars(object):
+    scale = 1.0
