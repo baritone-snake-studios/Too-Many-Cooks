@@ -1,4 +1,4 @@
-__author__ = 'neil@everymundo.com'
+from too_many_cooks.tile import Tile
 
 
 class Appliance(Tile):
