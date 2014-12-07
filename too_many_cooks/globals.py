@@ -3,7 +3,7 @@ import pygame
 
 class GlobalVars(object):
     contents = None
-    scale = 2.0
+    scale = 1.5
     registered_objects = []
     menu_x = 80 * scale
     menu_y = 80 * scale
