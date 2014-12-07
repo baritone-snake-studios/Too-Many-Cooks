@@ -1,5 +1,6 @@
 import pygame
 import sys
+from too_many_cooks.appliance import Stove
 from too_many_cooks.globals import GlobalVars
 from too_many_cooks.kitchen import Kitchen
 from too_many_cooks.player import Player
@@ -18,6 +19,7 @@ def run_game():
     GlobalVars.register_game_obj(kitchen)
     player = Player(2, 2)
     GlobalVars.register_game_obj(player)
+    stove = Stove(6,4)
 
     time_last_update = 0
     while True:
@@ -56,6 +58,7 @@ def run_game():
 
         kitchen.render(screen=DISPLAY_SURFACE)
         player.render(screen=DISPLAY_SURFACE)
+        stove.render(screen=DISPLAY_SURFACE)
         pygame.display.update()
         FpsClock.tick(FPS)
 
