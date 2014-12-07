@@ -1,7 +1,6 @@
 import os
 import pygame
 
-
 class GlobalVars(object):
     contents = None
     scale = 1.5
@@ -10,6 +9,7 @@ class GlobalVars(object):
     menu_y = 80 * scale
     menu = ""
     menu_scale = 4.0 * scale
+    player = None
 
     @classmethod
     def register_game_obj(cls, obj):
@@ -68,4 +68,14 @@ class GlobalVars(object):
             if len(GlobalVars.contents) >= 2:
                 screen.blit(GlobalVars.contents[1].image,
                             (menu_start_x + menu_offset_x, menu_start_y + menu_offset_y))
+
+    @classmethod
+    def send_message(cls, option):
+        print('sending message')
+        if GlobalVars.menu == 'Show Ingredients':
+            try:
+                option -= 1  # Because we count from 0
+                GlobalVars.player.get_ingredient(GlobalVars.contents[option])
+            except IndexError:
+                pass
 

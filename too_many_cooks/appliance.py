@@ -55,9 +55,7 @@ class Storage(Appliance):
     def use(self, user):
         if user.hands_are_full():
             raise CantGetItem
-
         GlobalVars.show_menu('Show Ingredients', contents=self.contents)
-        user.get_ingredient(self.contents[0])
 
 
 class Grill(Appliance):

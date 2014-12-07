@@ -21,6 +21,7 @@ def run_game():
 
     player = Player(start_x=2, start_y=2, kitchen=kitchen)
     GlobalVars.register_game_obj(player)
+    GlobalVars.player = player
 
     GlobalVars.load_menu()
 
@@ -33,7 +34,17 @@ def run_game():
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_1:
+                    GlobalVars.send_message(1)
+                if event.key == pygame.K_2:
+                    GlobalVars.send_message(2)
+                if event.key == pygame.K_3:
+                    GlobalVars.send_message(3)
+                if event.key == pygame.K_4:
+                    GlobalVars.send_message(4)
+
                 GlobalVars.show_menu("")
+
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
                     sys.exit()
@@ -45,8 +56,11 @@ def run_game():
                     player.set_direction('left')
                 if event.key == pygame.K_RIGHT:
                     player.set_direction('right')
+
                 if event.key == pygame.K_SPACE:
                     player.use_item()
+
+
 
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_UP:
