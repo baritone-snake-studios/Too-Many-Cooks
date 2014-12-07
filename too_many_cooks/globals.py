@@ -1,7 +1,7 @@
 
 class GlobalVars(object):
 
-    scale = 2.0
+    scale = 1.5
     registered_objects = []
 
     @classmethod

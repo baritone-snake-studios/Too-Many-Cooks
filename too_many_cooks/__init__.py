@@ -20,9 +20,9 @@ def run_game():
 
     player = Player(start_x=2, start_y=2, kitchen=kitchen)
     GlobalVars.register_game_obj(player)
-    
-    stove = Stove(6,4)
-    kitchen.make_tile_collidable(6,4)
+
+    stove = Stove(5, 3)
+    kitchen.make_tile_collidable(5, 3)
 
     time_last_update = 0
     while True:

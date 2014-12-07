@@ -16,9 +16,9 @@ class Kitchen(object):
         Tile.size_px = floor_image.get_width()
 
         self.tiles = []
-        for w in range(0, width):
+        for w in range(0, width+1):
             tile_row = []
-            for h in range(0, height):
+            for h in range(0, height+1):
                 tile_row.append(Tile(image=floor_image, is_colliding=False))
             self.tiles.append(tile_row)
 
@@ -47,10 +47,13 @@ class Kitchen(object):
     def make_tile_collidable(self, x, y, is_colliding=True):
         self.tiles[x][y].is_colliding = is_colliding
 
-    def is_walkable(self, current_tile):
-        x = current_tile['x']
-        y = current_tile['y']
-        return not self.tiles[x][y].is_colliding
+    def is_walkable(self, x, y):
+        try:
+            if x < 0 or y < 0:
+                raise ValueError
+            return not self.tiles[x][y].is_colliding
+        except (IndexError, ValueError):
+            return False
 
     @staticmethod
     def tile_to_pixel(current_tile, pos_in_tile=None):
@@ -58,7 +61,7 @@ class Kitchen(object):
             pos_in_tile = {'x': 0, 'y': 0}
         tile_x, tile_y = current_tile['x'], current_tile['y']
         offset_x, offset_y = pos_in_tile['x'], pos_in_tile['y']
-        return Tile.size_px * tile_x + offset_x - Tile.size_px, Tile.size_px * tile_y + offset_y - Tile.size_px
+        return Tile.size_px * tile_x + offset_x, Tile.size_px * tile_y + offset_y
 
 
 

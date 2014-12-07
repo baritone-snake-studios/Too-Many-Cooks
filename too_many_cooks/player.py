@@ -57,6 +57,7 @@ class Player(object):
         if self.moving_down:
             self.pos_in_tile['y'] += Player.move_speed
             self.image = self.down_image
+
         if self.moving_left:
             self.pos_in_tile['x'] -= Player.move_speed
             self.image = self.left_image
@@ -65,20 +66,30 @@ class Player(object):
             self.image = self.right_image
 
         if self.pos_in_tile['x'] > Tile.size_px:
-            if self.kitchen.is_walkable(self.current_tile):
+            if self.kitchen.is_walkable(self.current_tile['x']+1, self.current_tile['y']):
                 self.pos_in_tile['x'] -= Tile.size_px
                 self.current_tile['x'] += 1
             else:
                 self.pos_in_tile['x'] = Tile.size_px
-        if self.pos_in_tile['x'] < 0:
-            self.pos_in_tile['x'] += Tile.size_px
-            self.current_tile['x'] -= 1
-        if self.pos_in_tile['y'] > Tile.size_px:
-            self.pos_in_tile['y'] -= Tile.size_px
-            self.current_tile['y'] += 1
-        if self.pos_in_tile['y'] < 0:
-            self.pos_in_tile['y'] += Tile.size_px
-            self.current_tile['y'] -= 1
+        elif self.pos_in_tile['x'] < 0:
+            if self.kitchen.is_walkable(self.current_tile['x']-1, self.current_tile['y']):
+                self.pos_in_tile['x'] += Tile.size_px
+                self.current_tile['x'] -= 1
+            else:
+                self.pos_in_tile['x'] = 0
+
+        elif self.pos_in_tile['y'] > Tile.size_px:
+            if self.kitchen.is_walkable(self.current_tile['x'], self.current_tile['y']+1):
+                self.pos_in_tile['y'] -= Tile.size_px
+                self.current_tile['y'] += 1
+            else:
+                self.pos_in_tile['y'] = Tile.size_px
+        elif self.pos_in_tile['y'] < 0:
+            if self.kitchen.is_walkable(self.current_tile['x'], self.current_tile['y']-1):
+                self.pos_in_tile['y'] += Tile.size_px
+                self.current_tile['y'] -= 1
+            else:
+                self.pos_in_tile['y'] = 0
 
     def set_direction(self, direction):
         self.moving_up = False
@@ -97,7 +108,12 @@ class Player(object):
 
     def render(self, screen):
         x, y = Kitchen.tile_to_pixel(current_tile=self.current_tile, pos_in_tile=self.pos_in_tile)
+        x -= self.image.get_width() / 2
+        y -= self.image.get_height() / 2
         screen.blit(self.image, (x, y))
+        rect = self.image.get_rect()
+        rect = rect.move(Kitchen.tile_to_pixel(current_tile=self.current_tile))
+        pygame.draw.rect(screen, (255, 50, 255), rect, 3)
 
     def refresh_scale(self):
         move_speed = Player.base_move_speed * GlobalVars.scale
