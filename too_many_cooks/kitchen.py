@@ -100,7 +100,7 @@ class Kitchen(object):
         self.make_tile_collidable(4, 3)
         self.tiles[4][3].appliance = barrel
         self.appliances.append(barrel)
-        fridge.contents = [ingredients['Potato']]
+        barrel.contents = [ingredients['Potato']]
 
         pantry = Storage(4, 2, type= "pantry")
         self.make_tile_collidable(4, 2)

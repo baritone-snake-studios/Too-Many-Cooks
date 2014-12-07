@@ -1,7 +1,7 @@
-from collections import namedtuple
 import os
+
 import pygame
-from too_many_cooks import Kitchen
+
 from too_many_cooks.globals import GlobalVars
 from too_many_cooks.tile import Tile
 

@@ -1,6 +1,5 @@
 import pygame
 import sys
-from too_many_cooks.appliance import Stove
 from too_many_cooks.globals import GlobalVars
 from too_many_cooks.kitchen import Kitchen
 from too_many_cooks.player import Player

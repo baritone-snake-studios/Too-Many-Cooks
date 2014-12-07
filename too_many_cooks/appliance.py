@@ -1,5 +1,6 @@
 import os
 import pygame
+from too_many_cooks import player
 from too_many_cooks.globals import GlobalVars
 from too_many_cooks.tile import Tile
 
@@ -41,8 +42,8 @@ class Storage(Appliance):
         if user.hands_are_full():
             raise CantGetItem
 
-        ingr_1, ingr_2 = user.get_ingredients()
 
+        user.get_ingredient(self.contents[0])
 
 class Grill(Appliance):
     def __init__(self, start_x, start_y):
