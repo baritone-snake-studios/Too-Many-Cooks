@@ -1,3 +1,6 @@
+import os
+import pygame
+
 
 class GlobalVars(object):
 
@@ -19,4 +22,13 @@ class GlobalVars(object):
 
         for obj in GlobalVars.registered_objects:
             obj.refresh_scale()
+    @classmethod
+    def show_menu(cls, menu_type):
+        GlobalVars.menu= menu_type
 
+    @classmethod
+    def load_menu(cls, load_menu):
+        GlobalVars.no_ingredient_image = pygame.image.load(os.path.join('sprites', 'no_ingredient_image.png'))
+        GlobalVars.recipe_list_image= pygame.image.load(os.path.join('sprites', 'recipe_list_image.png'))
+        GlobalVars.ingredient_list= pygame.image.load(os.path.join('sprites', 'ingredient_list.png'))
+        GlobalVars.new_order= pygame.image.load(os.path.join('sprites', 'new_order.png'))
