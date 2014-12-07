@@ -31,6 +31,27 @@ def run_game():
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
                     sys.exit()
+                if event.key == pygame.K_UP:
+                    player.moving_up = True
+                if event.key == pygame.K_DOWN:
+                    player.moving_down = True
+                if event.key == pygame.K_LEFT:
+                    player.moving_left = True
+                if event.key == pygame.K_RIGHT:
+                    player.moving_right = True
+
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_UP:
+                    player.moving_up = False
+                if event.key == pygame.K_DOWN:
+                    player.moving_down = False
+                if event.key == pygame.K_LEFT:
+                    player.moving_left = False
+                if event.key == pygame.K_RIGHT:
+                    player.moving_right = False
+
+
+
 
         player.update()
 
