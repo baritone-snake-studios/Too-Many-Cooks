@@ -27,11 +27,11 @@ class Kitchen(object):
         tile_y = 0
 
         for tile_row in self.tiles:
-            tile_x += Tile.size_px
             tile_y = 0
             for tile in tile_row:
                 screen.blit(tile.image, (tile_x, tile_y))
                 tile_y += Tile.size_px
+            tile_x += Tile.size_px
 
     def refresh_scale(self):
         self.tile_scale = GlobalVars.scale * Tile.scale

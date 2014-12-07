@@ -50,11 +50,7 @@ def run_game():
                 if event.key == pygame.K_RIGHT:
                     player.moving_right = False
 
-
-
-
         player.update()
-
 
         DISPLAY_SURFACE.fill((155, 180, 200))
 
