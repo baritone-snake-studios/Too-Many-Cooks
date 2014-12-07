@@ -141,6 +141,17 @@ class Player(object):
         rect = self.image.get_rect()
         rect = rect.move(Tile.tile_to_pixel(current_tile=self.current_tile))
         pygame.draw.rect(screen, (255, 50, 255), rect, 3)
+        if self.direction == "up":
+            if self.ingredient_1:
+                screen.blit(self.ingredient_1.image,(x,y +50))
+            if self.ingredient_2:
+                screen.blit(self.ingredient_2.image,(x+50,y +50))
+        if self.direction == "down":
+            if self.ingredient_1:
+                screen.blit(self.ingredient_1.image,(x+50,y +50))
+            if self.ingredient_2:
+                screen.blit(self.ingredient_2.image,(x,y +50))
+
 
     def refresh_scale(self):
         move_speed = Player.base_move_speed * GlobalVars.scale

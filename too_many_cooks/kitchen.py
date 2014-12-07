@@ -78,9 +78,9 @@ class Kitchen(object):
         self.tiles[2][0].appliance = grill
         self.appliances.append(grill)
 
-        stove = Stove(3, 0)
-        self.make_tile_collidable(3, 0)
-        self.tiles[3][0].appliance = stove
+        stove = Stove(0, 0)
+        self.make_tile_collidable(0, 0)
+        self.tiles[0][0].appliance = stove
         self.appliances.append(stove)
 
         fryer = Fryer(1, 0)
