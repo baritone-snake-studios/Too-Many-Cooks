@@ -1,6 +1,6 @@
 import os
 import pygame
-from too_many_cooks.appliance import Stove
+from too_many_cooks.appliance import Stove, Storage
 from too_many_cooks.globals import GlobalVars
 from too_many_cooks.tile import Tile
 
@@ -76,6 +76,11 @@ class Kitchen(object):
         self.make_tile_collidable(5, 3)
         self.tiles[5][3].appliance = stove
         self.appliances.append(stove)
+
+        freezer = Storage(5,0, type= "freezer")
+        self.make_tile_collidable(5, 0)
+        self.tiles[5][0].appliance = freezer
+        self.appliances.append(freezer)
 
     def setup_level_two(self):
         raise NotImplementedError
