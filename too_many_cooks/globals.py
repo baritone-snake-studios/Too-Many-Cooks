@@ -67,6 +67,12 @@ class GlobalVars(object):
                             (menu_start_x, menu_start_y))
             if len(GlobalVars.contents) >= 2:
                 screen.blit(GlobalVars.contents[1].image,
+                            (menu_start_x + menu_offset_x, menu_start_y))
+            if len(GlobalVars.contents) >= 3:
+                screen.blit(GlobalVars.contents[2].image,
+                            (menu_start_x + menu_offset_x, menu_start_y + menu_offset_y))
+            if len(GlobalVars.contents) >= 4:
+                screen.blit(GlobalVars.contents[3].image,
                             (menu_start_x + menu_offset_x, menu_start_y + menu_offset_y))
 
     @classmethod
