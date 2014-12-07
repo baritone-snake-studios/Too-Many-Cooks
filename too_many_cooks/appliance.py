@@ -1,6 +1,7 @@
 import os
 import pygame
 from too_many_cooks import player
+from too_many_cooks.player import  NoIngredientError
 from too_many_cooks.globals import GlobalVars
 from too_many_cooks.tile import Tile
 
@@ -12,8 +13,8 @@ class Appliance(object):
 
         self.image = pygame.image.load(image_path)
         self.image = pygame.transform.scale(self.image,
-                               (int(self.image.get_width() * self.scale),
-                                int(self.image.get_height() * self.scale)))
+                                            (int(self.image.get_width() * self.scale),
+                                             int(self.image.get_height() * self.scale)))
 
         self.current_tile = {
             'x': start_x,
@@ -33,7 +34,7 @@ class CantGetItem(Exception):
 
 
 class Storage(Appliance):
-    def __init__(self, start_x, start_y, type,contents=None):
+    def __init__(self, start_x, start_y, type, contents=None):
         image_path = (os.path.join('sprites', '{}.png'.format(type)))
         super().__init__(image_path, start_x, start_y)
         self.contents = contents
@@ -42,8 +43,8 @@ class Storage(Appliance):
         if user.hands_are_full():
             raise CantGetItem
 
-
         user.get_ingredient(self.contents[0])
+
 
 class Grill(Appliance):
     def __init__(self, start_x, start_y):
@@ -60,8 +61,10 @@ class Fryer(Appliance):
         super().__init__(image_path, start_x, start_y)
 
     def use(self, user):
-        ingr_1, ingr_2 = user.get_ingredients()
-        print('You have {} in your left hand, and {} in your right hand'.format(ingr_1, ingr_2))
+        try:
+            user.use_ingredient("Potato")
+        except NoIngredientError:
+            print("Where your potato at")
 
 
 class ChoppingBlock(Appliance):

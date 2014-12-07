@@ -84,6 +84,7 @@ class Kitchen(object):
         self.tiles[1][0].appliance = fryer
         self.appliances.append(fryer)
 
+
         fridge = Storage(0,2, type= "fridge")
         self.make_tile_collidable(0, 2)
         self.tiles[0][2].appliance = fridge
