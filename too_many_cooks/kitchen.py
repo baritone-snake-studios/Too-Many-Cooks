@@ -1,6 +1,6 @@
 import os
 import pygame
-from too_many_cooks.appliance import Stove, Storage
+from too_many_cooks.appliance import Stove, Storage, Fryer
 from too_many_cooks.globals import GlobalVars
 from too_many_cooks.tile import Tile
 
@@ -72,10 +72,21 @@ class Kitchen(object):
             self.setup_level_four()
 
     def setup_level_one(self):
-        stove = Stove(1, 0)
-        self.make_tile_collidable(1, 0)
-        self.tiles[1][0].appliance = stove
+        stove = Stove(2, 0)
+        self.make_tile_collidable(2, 0)
+        self.tiles[2][0].appliance = stove
         self.appliances.append(stove)
+
+        # fryer = Fryer(1, 0)
+        # self.make_tile_collidable(1, 0)
+        # self.tiles[1][0].appliance = fryer
+        # self.appliances.append(fryer)
+        #
+        # fridge = Storage(0,2, type= "fridge")
+        # self.make_tile_collidable(0, 2)
+        # self.tiles[0][2].appliance = fridge
+        # self.appliances.append(fridge)
+        # # move fridge after first level
 
         freezer = Storage(4,0, type= "freezer")
         self.make_tile_collidable(4, 0)
