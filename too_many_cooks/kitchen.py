@@ -72,15 +72,20 @@ class Kitchen(object):
             self.setup_level_four()
 
     def setup_level_one(self):
-        stove = Stove(5, 3)
-        self.make_tile_collidable(5, 3)
-        self.tiles[5][3].appliance = stove
+        stove = Stove(1, 0)
+        self.make_tile_collidable(1, 0)
+        self.tiles[1][0].appliance = stove
         self.appliances.append(stove)
 
-        freezer = Storage(5,0, type= "freezer")
-        self.make_tile_collidable(5, 0)
-        self.tiles[5][0].appliance = freezer
+        freezer = Storage(6,0, type= "freezer")
+        self.make_tile_collidable(6, 0)
+        self.tiles[6][0].appliance = freezer
         self.appliances.append(freezer)
+
+        barrel = Storage(6,4, type= "barrel")
+        self.make_tile_collidable(6, 4)
+        self.tiles[6][4].appliance = barrel
+        self.appliances.append(barrel)
 
     def setup_level_two(self):
         raise NotImplementedError

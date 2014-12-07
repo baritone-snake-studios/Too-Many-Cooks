@@ -33,7 +33,7 @@ class CantGetItem(Exception):
 
 class Storage(Appliance):
     def __init__(self, start_x, start_y, type,contents=None):
-        image_path = (os.path.join('sprites', '[].png'.format(type)))
+        image_path = (os.path.join('sprites', '{}.png'.format(type)))
         super().__init__(image_path, start_x, start_y)
         self.contents = contents
 
