@@ -5,6 +5,8 @@ from too_many_cooks.player import  NoIngredientError
 from too_many_cooks.globals import GlobalVars
 from too_many_cooks.tile import Tile
 
+class CantGetItem(Exception):
+    pass
 
 class Appliance(object):
     def __init__(self, image_path, start_x, start_y):
@@ -20,6 +22,7 @@ class Appliance(object):
             'x': start_x,
             'y': start_y
         }
+        self.contents = []
 
     def render(self, screen):
         x, y = Tile.tile_to_pixel(current_tile=self.current_tile)
@@ -28,9 +31,19 @@ class Appliance(object):
     def use(self, user):
         pass
 
+    def recieve_ingredients(self, user, ingredients):
+        recieved_ingredients = False
+        for ingredient in ingredients:
+            try:
+                user.use_ingredient(ingredient)
+                recieved_ingredients = True
+                print('Used {}'.format(ingredient))
+            except NoIngredientError:
+                pass
 
-class CantGetItem(Exception):
-    pass
+        if not recieved_ingredients:
+            print("You're not holding any {}".format(' or '.join(ingredients)))
+            # GlobalVars.set_menu('No Ingredient')
 
 
 class Storage(Appliance):
@@ -52,7 +65,7 @@ class Grill(Appliance):
         super().__init__(image_path, start_x, start_y)
 
     def use(self, user):
-        ingr_1, ingr_2 = user.get_ingredients()
+        self.recieve_ingredients(user, ['Beed Patty', 'Bacon'])
 
 
 class Fryer(Appliance):
@@ -61,17 +74,13 @@ class Fryer(Appliance):
         super().__init__(image_path, start_x, start_y)
 
     def use(self, user):
-        try:
-            user.use_ingredient("Potato")
-        except NoIngredientError:
-            print("Where your potato at")
+        self.recieve_ingredients(user, ['Potato'])
 
 
 class ChoppingBlock(Appliance):
     def __init__(self, start_x, start_y):
         image_path = (os.path.join('sprites', 'choppingblock.png'))
         super().__init__(image_path, start_x, start_y)
-
 
     def use(self, user):
         ingr_1, ingr_2 = user.get_ingredients()
@@ -102,7 +111,7 @@ class Stove(Appliance):
 
     def use(self, user):
         ingr_1, ingr_2 = user.get_ingredients()
-        print('You have {} in your left hand, and {} in your right hand'.format(ingr_1, ingr_2))
+        self.recieve_ingredients(user, ['Tomato', 'Chicken', 'Noodles'])
 
 
 
