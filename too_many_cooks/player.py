@@ -37,7 +37,7 @@ class Player(object):
         if self.moving_down:
             self.pos_in_tile['y'] += Player.move_speed
         if self.moving_left:
-            self.pos_in_tile['x'] += Player.move_speed
+            self.pos_in_tile['x'] -= Player.move_speed
         if self.moving_right:
             self.pos_in_tile['x'] += Player.move_speed
 
