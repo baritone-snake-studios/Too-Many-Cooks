@@ -77,16 +77,16 @@ class Kitchen(object):
         self.tiles[2][0].appliance = stove
         self.appliances.append(stove)
 
-        # fryer = Fryer(1, 0)
-        # self.make_tile_collidable(1, 0)
-        # self.tiles[1][0].appliance = fryer
-        # self.appliances.append(fryer)
-        #
-        # fridge = Storage(0,2, type= "fridge")
-        # self.make_tile_collidable(0, 2)
-        # self.tiles[0][2].appliance = fridge
-        # self.appliances.append(fridge)
-        # # move fridge after first level
+        fryer = Fryer(1, 0,)
+        self.make_tile_collidable(1, 0)
+        self.tiles[1][0].appliance = fryer
+        self.appliances.append(fryer)
+
+        fridge = Storage(0,2, type= "fridge")
+        self.make_tile_collidable(0, 2)
+        self.tiles[0][2].appliance = fridge
+        self.appliances.append(fridge)
+        # move fridge after first level
 
         freezer = Storage(4,0, type= "freezer")
         self.make_tile_collidable(4, 0)
