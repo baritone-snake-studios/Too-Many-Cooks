@@ -157,10 +157,10 @@ class Player(object):
 
     def use_ingredient(self, ingredient_name):
         ingr = None
-        if self.ingredient_1.name == ingredient_name:
+        if self.ingredient_1 and self.ingredient_1.name == ingredient_name:
             ingr = self.ingredient_1
             self.ingredient_1 = None
-        elif self.ingredient_2.name == ingredient_name:
+        elif self.ingredient_2 and self.ingredient_2.name == ingredient_name:
             ingr = self.ingredient_2
             self.ingredient_2 = None
         if ingr is not None:
