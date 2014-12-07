@@ -8,6 +8,9 @@ class Ingredient(object):
         self.name = name
         # self.image = pygame.image.load(image_path)
 
+    def __repr__(self):
+        return self.name
+
 
 beef_patty = Ingredient('Beef Patty', os.path.join('sprites', 'beef_patty.png'))
 burger_bun = Ingredient('Buger Buns', os.path.join('sprites', 'burger_bun.png'))
