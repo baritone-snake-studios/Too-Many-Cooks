@@ -1,12 +1,18 @@
 import os
 import pygame
+from too_many_cooks.globals import GlobalVars
 from too_many_cooks.kitchen import Kitchen
 
 
 class Appliance(object):
     def __init__(self, image_path, start_x, start_y):
         super().__init__()
+        self.scale = GlobalVars.scale * 4
+
         self.image = pygame.image.load(image_path)
+        self.image = pygame.transform.scale(self.image,
+                               (int(self.image.get_width() * self.scale),
+                                int(self.image.get_height() * self.scale)))
 
         self.current_tile = {
             'x': start_x,
