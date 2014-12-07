@@ -1,5 +1,6 @@
 import pygame
 import sys
+from too_many_cooks.globals import GlobalVars
 from too_many_cooks.kitchen import Kitchen
 
 
@@ -13,6 +14,7 @@ def run_game():
     FpsClock = pygame.time.Clock()
 
     kitchen = Kitchen(width=6, height=4)
+    GlobalVars.register_game_obj(kitchen)
 
     time_last_update = 0
     while True:
@@ -22,6 +24,10 @@ def run_game():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
 
         DISPLAY_SURFACE.fill((155, 180, 200))
 
@@ -29,7 +35,6 @@ def run_game():
 
         pygame.display.update()
         FpsClock.tick(FPS)
-
 
 
 def get_window_size():

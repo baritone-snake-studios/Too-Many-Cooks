@@ -1,6 +1,6 @@
 import os
 import pygame
-from too_many_cooks import GlobalVars
+from too_many_cooks.globals import GlobalVars
 
 
 class Player(object):
@@ -14,3 +14,6 @@ class Player(object):
         self.current_tile = None
         self.vel_x = 0.0
         self.vel_y = 0.0
+
+    def refresh_scale(self):
+        raise NotImplementedError
