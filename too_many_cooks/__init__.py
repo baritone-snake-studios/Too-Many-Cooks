@@ -16,7 +16,7 @@ def run_game():
     FPS = get_max_fps()
     FpsClock = pygame.time.Clock()
 
-    kitchen = Kitchen(width=6, height=4)
+    kitchen = Kitchen(width=4, height=3)
     GlobalVars.register_game_obj(kitchen)
     kitchen.setup_level(current_level)
 

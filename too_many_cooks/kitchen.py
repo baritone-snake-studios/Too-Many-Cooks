@@ -77,14 +77,14 @@ class Kitchen(object):
         self.tiles[1][0].appliance = stove
         self.appliances.append(stove)
 
-        freezer = Storage(6,0, type= "freezer")
-        self.make_tile_collidable(6, 0)
-        self.tiles[6][0].appliance = freezer
+        freezer = Storage(4,0, type= "freezer")
+        self.make_tile_collidable(4, 0)
+        self.tiles[4][0].appliance = freezer
         self.appliances.append(freezer)
 
-        barrel = Storage(6,4, type= "barrel")
-        self.make_tile_collidable(6, 4)
-        self.tiles[6][4].appliance = barrel
+        barrel = Storage(4, 3, type= "barrel")
+        self.make_tile_collidable(4, 3)
+        self.tiles[4][3].appliance = barrel
         self.appliances.append(barrel)
 
     def setup_level_two(self):
