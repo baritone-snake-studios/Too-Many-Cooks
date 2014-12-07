@@ -32,13 +32,13 @@ def run_game():
                     pygame.quit()
                     sys.exit()
                 if event.key == pygame.K_UP:
-                    player.moving_up = True
+                    player.set_direction('up')
                 if event.key == pygame.K_DOWN:
-                    player.moving_down = True
+                    player.set_direction('down')
                 if event.key == pygame.K_LEFT:
-                    player.moving_left = True
+                    player.set_direction('left')
                 if event.key == pygame.K_RIGHT:
-                    player.moving_right = True
+                    player.set_direction('right')
 
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_UP:
