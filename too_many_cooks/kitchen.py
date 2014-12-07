@@ -44,8 +44,16 @@ class Kitchen(object):
             for tile in tile_row:
                 tile.image = floor_image
 
-    @classmethod
-    def tile_to_pixel(cls, current_tile, pos_in_tile=None):
+    def make_tile_collidable(self, x, y, is_colliding=True):
+        self.tiles[x][y].is_colliding = is_colliding
+
+    def is_walkable(self, current_tile):
+        x = current_tile['x']
+        y = current_tile['y']
+        return not self.tiles[x][y].is_colliding
+
+    @staticmethod
+    def tile_to_pixel(current_tile, pos_in_tile=None):
         if pos_in_tile is None:
             pos_in_tile = {'x': 0, 'y': 0}
         tile_x, tile_y = current_tile['x'], current_tile['y']

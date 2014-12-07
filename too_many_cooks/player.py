@@ -10,8 +10,9 @@ class Player(object):
     base_move_speed = 5
     move_speed = base_move_speed * GlobalVars.scale
 
-    def __init__(self, start_x, start_y):
+    def __init__(self, start_x, start_y, kitchen):
         super().__init__()
+        self.kitchen = kitchen
         self.scale = GlobalVars.scale * 4
 
         image = pygame.image.load(os.path.join('sprites', 'player_up.png'))
@@ -64,8 +65,11 @@ class Player(object):
             self.image = self.right_image
 
         if self.pos_in_tile['x'] > Tile.size_px:
-            self.pos_in_tile['x'] -= Tile.size_px
-            self.current_tile['x'] += 1
+            if self.kitchen.is_walkable(self.current_tile):
+                self.pos_in_tile['x'] -= Tile.size_px
+                self.current_tile['x'] += 1
+            else:
+                self.pos_in_tile['x'] = Tile.size_px
         if self.pos_in_tile['x'] < 0:
             self.pos_in_tile['x'] += Tile.size_px
             self.current_tile['x'] -= 1
