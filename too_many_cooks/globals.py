@@ -1,5 +1,7 @@
 import os
 import pygame
+from too_many_cooks.errors import HandsFullError
+
 
 class GlobalVars(object):
     contents = None
@@ -44,6 +46,11 @@ class GlobalVars(object):
         GlobalVars.ingredient_list_image = pygame.transform.scale(GlobalVars.ingredient_list_image,
                                                                   (int(size * GlobalVars.menu_scale),
                                                                    int(size * GlobalVars.menu_scale)))
+        GlobalVars.full_hands_image = pygame.image.load(os.path.join('sprites', 'full_hands.png'))
+        GlobalVars.full_hands_image = pygame.transform.scale(GlobalVars.ingredient_list_image,
+                                                                  (int(size * GlobalVars.menu_scale),
+                                                                   int(size * GlobalVars.menu_scale)))
+
         # GlobalVars.recipe_list_image= pygame.image.load(os.path.join('sprites', 'recipe_list.png'))
         # GlobalVars.new_order= pygame.image.load(os.path.join('sprites', 'new_order.png'))
 
@@ -51,6 +58,9 @@ class GlobalVars(object):
     def render(cls, screen):
         if GlobalVars.menu == "No Ingredient":
             screen.blit(GlobalVars.no_ingredient_image, (GlobalVars.menu_x, GlobalVars.menu_y))
+
+        if GlobalVars.menu == "Full Hands":
+            screen.blit(GlobalVars.full_hands_image, (GlobalVars.menu_x, GlobalVars.menu_y))
 
         if GlobalVars.menu == "Show Ingredients":
             if GlobalVars.contents is None:
@@ -84,4 +94,7 @@ class GlobalVars(object):
                 GlobalVars.player.get_ingredient(GlobalVars.contents[option])
             except IndexError:
                 pass
+            except HandsFullError:
+                print("my hands are full")
+                GlobalVars.show_menu('Full Hands.')
 

@@ -1,12 +1,11 @@
 import os
+
 import pygame
-from too_many_cooks import player
-from too_many_cooks.player import  NoIngredientError
+
+from too_many_cooks.errors import CantGetItem, NoIngredientError
 from too_many_cooks.globals import GlobalVars
 from too_many_cooks.tile import Tile
 
-class CantGetItem(Exception):
-    pass
 
 class Appliance(object):
     def __init__(self, image_path, start_x, start_y):

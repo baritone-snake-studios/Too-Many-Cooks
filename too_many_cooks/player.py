@@ -2,16 +2,9 @@ import os
 
 import pygame
 
+from too_many_cooks.errors import HandsFullError, NoIngredientError
 from too_many_cooks.globals import GlobalVars
 from too_many_cooks.tile import Tile
-
-
-class HandsFullError(Exception):
-    pass
-
-
-class NoIngredientError(Exception):
-    pass
 
 
 class Player(object):
