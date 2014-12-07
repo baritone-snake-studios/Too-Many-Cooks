@@ -8,6 +8,7 @@ class GlobalVars(object):
     registered_objects = []
     menu_x =20
     menu_y = 20
+    menu = ""
 
     @classmethod
     def register_game_obj(cls, obj):
@@ -38,4 +39,4 @@ class GlobalVars(object):
     @classmethod
     def render(cls, screen):
         if GlobalVars.menu== "No Ingredient":
-            screen.blit(self.image, (menu_x, menu_y))
+            screen.blit(GlobalVars.no_ingredient_image, (GlobalVars.menu_x, GlobalVars.menu_y))
