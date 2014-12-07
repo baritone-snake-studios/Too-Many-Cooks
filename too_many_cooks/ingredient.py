@@ -19,7 +19,7 @@ tomato = Ingredient('Tomato', os.path.join('sprites', 'tomato.png'))
 
 ingredients = {
     'Beef Patty': beef_patty,
-    'Buger Buns': burger_bun,
+    'Burger Buns': burger_bun,
     'Potato': Potato,
     'Lettuce': lettuce,
     'Tomato': tomato,

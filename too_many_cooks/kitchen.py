@@ -95,6 +95,7 @@ class Kitchen(object):
         self.make_tile_collidable(4, 0)
         self.tiles[4][0].appliance = freezer
         self.appliances.append(freezer)
+        freezer.contents = [ingredients['Beef Patty']]
 
         barrel = Storage(4, 3, type= "barrel")
         self.make_tile_collidable(4, 3)
@@ -106,6 +107,7 @@ class Kitchen(object):
         self.make_tile_collidable(4, 2)
         self.tiles[4][2].appliance = pantry
         self.appliances.append(pantry)
+        pantry.contents = [ingredients['Burger Buns']]
 
     def setup_level_two(self):
         stove = Stove(2, 0)
