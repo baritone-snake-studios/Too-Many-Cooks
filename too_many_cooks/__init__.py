@@ -33,6 +33,7 @@ def run_game():
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.KEYDOWN:
+                GlobalVars.show_menu("")
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
                     sys.exit()
