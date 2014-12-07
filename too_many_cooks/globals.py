@@ -1,6 +1,6 @@
 
 class GlobalVars(object):
-    scale = 1.0
+    scale = 2.5
 
 
     @classmethod

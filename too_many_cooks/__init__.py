@@ -1,6 +1,7 @@
 import pygame
 import sys
 from too_many_cooks.kitchen import Kitchen
+from too_many_cooks.player import Player
 
 
 def run_game():
@@ -13,7 +14,7 @@ def run_game():
     FpsClock = pygame.time.Clock()
 
     kitchen = Kitchen(width=6, height=4)
-
+    player = Player()
     time_last_update = 0
     while True:
         time = FpsClock.get_time()
@@ -26,7 +27,7 @@ def run_game():
         DISPLAY_SURFACE.fill((155, 180, 200))
 
         kitchen.render(screen=DISPLAY_SURFACE)
-
+        player.render(screen=DISPLAY_SURFACE)
         pygame.display.update()
         FpsClock.tick(FPS)
 
