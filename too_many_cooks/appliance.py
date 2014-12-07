@@ -45,27 +45,27 @@ class Storage(Appliance):
 
 
 class Grill(Appliance):
-    def __init__(self, image_path):
+    def __init__(self, start_x, start_y):
         image_path = (os.path.join('sprites', 'grill.png'))
-        super().__init__(image_path)
+        super().__init__(image_path, start_x, start_y)
 
     def use(self, user):
         ingr_1, ingr_2 = user.get_ingredients()
 
 
 class Fryer(Appliance):
-    def __init__(self, image_path):
+    def __init__(self, start_x, start_y):
         image_path = (os.path.join('sprites', 'fryer.png'))
-        super().__init__(image_path)
+        super().__init__(image_path, start_x, start_y)
 
     def use(self, user):
         ingr_1, ingr_2 = user.get_ingredients()
 
 
 class ChoppingBlock(Appliance):
-    def __init__(self, image_path):
+    def __init__(self, start_x, start_y):
         image_path = (os.path.join('sprites', 'choppingblock.png'))
-        super().__init__(image_path)
+        super().__init__(image_path, start_x, start_y)
 
 
     def use(self, user):
@@ -73,18 +73,18 @@ class ChoppingBlock(Appliance):
 
 
 class Oven(Appliance):
-    def __init__(self, image_path):
+    def __init__(self, start_x, start_y):
         image_path = (os.path.join('sprites', 'oven.png'))
-        super().__init__(image_path)
+        super().__init__(image_path, start_x, start_y)
 
     def use(self, user):
         ingr_1, ingr_2 = user.get_ingredients()
 
 
 class CounterTop(Appliance):
-    def __init__(self, image_path):
+    def __init__(self, start_x, start_y):
         image_path = (os.path.join('sprites', 'countertop.png'))
-        super().__init__(image_path)
+        super().__init__(image_path, start_x, start_y)
 
     def use(self, user):
         ingr_1, ingr_2 = user.get_ingredients()
