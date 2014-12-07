@@ -161,7 +161,6 @@ class Player(object):
         raise NotImplementedError
 
     def get_ingredient(self, ingredient):
-        print('Recieving {}'.format(ingredient.name))
         if not self.ingredient_1:
             self.ingredient_1 = ingredient
             return

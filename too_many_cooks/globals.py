@@ -31,6 +31,7 @@ class GlobalVars(object):
 
     @classmethod
     def show_menu(cls, menu_type, contents=None):
+        print('setting menu: {}'.format(menu_type))
         GlobalVars.contents = contents
         GlobalVars.menu = menu_type
 
@@ -47,7 +48,7 @@ class GlobalVars(object):
                                                                   (int(size * GlobalVars.menu_scale),
                                                                    int(size * GlobalVars.menu_scale)))
         GlobalVars.full_hands_image = pygame.image.load(os.path.join('sprites', 'full_hands.png'))
-        GlobalVars.full_hands_image = pygame.transform.scale(GlobalVars.ingredient_list_image,
+        GlobalVars.full_hands_image = pygame.transform.scale(GlobalVars.full_hands_image,
                                                                   (int(size * GlobalVars.menu_scale),
                                                                    int(size * GlobalVars.menu_scale)))
 
@@ -87,14 +88,14 @@ class GlobalVars(object):
 
     @classmethod
     def send_message(cls, option):
-        print('sending message')
         if GlobalVars.menu == 'Show Ingredients':
             try:
                 option -= 1  # Because we count from 0
                 GlobalVars.player.get_ingredient(GlobalVars.contents[option])
+                GlobalVars.show_menu('')
             except IndexError:
                 pass
             except HandsFullError:
                 print("my hands are full")
-                GlobalVars.show_menu('Full Hands.')
+                GlobalVars.show_menu('Full Hands')
 

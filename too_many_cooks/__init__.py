@@ -43,22 +43,28 @@ def run_game():
                 if event.key == pygame.K_4:
                     GlobalVars.send_message(4)
 
-                GlobalVars.show_menu("")
-
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
                     sys.exit()
+
                 if event.key == pygame.K_UP:
                     player.set_direction('up')
+                    GlobalVars.show_menu("")
                 if event.key == pygame.K_DOWN:
                     player.set_direction('down')
+                    GlobalVars.show_menu("")
                 if event.key == pygame.K_LEFT:
                     player.set_direction('left')
+                    GlobalVars.show_menu("")
                 if event.key == pygame.K_RIGHT:
                     player.set_direction('right')
+                    GlobalVars.show_menu("")
 
                 if event.key == pygame.K_SPACE:
-                    player.use_item()
+                    if not GlobalVars.menu:
+                        player.use_item()
+                    else:
+                        GlobalVars.show_menu("")
 
 
 
