@@ -60,6 +60,7 @@ class Fryer(Appliance):
 
     def use(self, user):
         ingr_1, ingr_2 = user.get_ingredients()
+        print('You have {} in your left hand, and {} in your right hand'.format(ingr_1, ingr_2))
 
 
 class ChoppingBlock(Appliance):
