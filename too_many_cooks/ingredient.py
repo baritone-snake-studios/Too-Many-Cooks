@@ -6,7 +6,7 @@ class Ingredient(object):
     def __init__(self, name, image_path):
         super().__init__()
         self.name = name
-        self.image = pygame.image.load(image_path)
+        # self.image = pygame.image.load(image_path)
 
 
 beef_patty = Ingredient('Beef Patty', os.path.join('sprites', 'beef_patty.png'))
