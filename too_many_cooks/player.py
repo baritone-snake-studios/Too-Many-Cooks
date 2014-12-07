@@ -35,6 +35,7 @@ class Player(object):
                                                (int(image.get_width() * self.scale),
                                                 int(image.get_height() * self.scale)))
         self.image = self.down_image
+        self.collision_fudge = self.image.get_width() * 0.25
 
         self.current_tile = {
             'x': start_x,
@@ -65,31 +66,39 @@ class Player(object):
             self.pos_in_tile['x'] += Player.move_speed
             self.image = self.right_image
 
-        if self.pos_in_tile['x'] > Tile.size_px:
-            if self.kitchen.is_walkable(self.current_tile['x']+1, self.current_tile['y']):
-                self.pos_in_tile['x'] -= Tile.size_px
-                self.current_tile['x'] += 1
-            else:
-                self.pos_in_tile['x'] = Tile.size_px
-        elif self.pos_in_tile['x'] < 0:
-            if self.kitchen.is_walkable(self.current_tile['x']-1, self.current_tile['y']):
-                self.pos_in_tile['x'] += Tile.size_px
-                self.current_tile['x'] -= 1
-            else:
-                self.pos_in_tile['x'] = 0
+        ###
 
-        elif self.pos_in_tile['y'] > Tile.size_px:
+        if self.pos_in_tile['x'] > Tile.size_px - self.collision_fudge:
+            if self.kitchen.is_walkable(self.current_tile['x']+1, self.current_tile['y']):
+                if self.pos_in_tile['x'] > Tile.size_px:
+                    self.pos_in_tile['x'] -= Tile.size_px
+                    self.current_tile['x'] += 1
+            else:
+                self.pos_in_tile['x'] = Tile.size_px - self.collision_fudge
+        if self.pos_in_tile['x'] < 0 + self.collision_fudge:
+            if self.kitchen.is_walkable(self.current_tile['x']-1, self.current_tile['y']):
+                if self.pos_in_tile['x'] < 0:
+                    self.pos_in_tile['x'] += Tile.size_px
+                    self.current_tile['x'] -= 1
+            else:
+                self.pos_in_tile['x'] = 0 + self.collision_fudge
+
+        if self.pos_in_tile['y'] > Tile.size_px - self.collision_fudge:
             if self.kitchen.is_walkable(self.current_tile['x'], self.current_tile['y']+1):
-                self.pos_in_tile['y'] -= Tile.size_px
-                self.current_tile['y'] += 1
+                if self.pos_in_tile['y']:
+                    self.pos_in_tile['y'] -= Tile.size_px
+                    self.current_tile['y'] += 1
             else:
-                self.pos_in_tile['y'] = Tile.size_px
-        elif self.pos_in_tile['y'] < 0:
+                self.pos_in_tile['y'] = Tile.size_px - self.collision_fudge
+        if self.pos_in_tile['y'] < 0 + self.collision_fudge:
             if self.kitchen.is_walkable(self.current_tile['x'], self.current_tile['y']-1):
-                self.pos_in_tile['y'] += Tile.size_px
-                self.current_tile['y'] -= 1
+                if self.pos_in_tile['y'] < 0:
+                    self.pos_in_tile['y'] += Tile.size_px
+                    self.current_tile['y'] -= 1
             else:
-                self.pos_in_tile['y'] = 0
+                self.pos_in_tile['y'] = 0 + self.collision_fudge
+
+        # print('Tile: {}, {}  |  Offset: {}, {}'.format(self.current_tile['x'], self.current_tile['y'], self.pos_in_tile['x'], self.pos_in_tile['y']))
 
     def set_direction(self, direction):
         self.moving_up = False
