@@ -16,7 +16,7 @@ def run_game():
 
     kitchen = Kitchen(width=6, height=4)
     GlobalVars.register_game_obj(kitchen)
-    player = Player()
+    player = Player(2, 2)
     GlobalVars.register_game_obj(player)
 
     time_last_update = 0
@@ -31,6 +31,9 @@ def run_game():
                 if event.key == pygame.K_ESCAPE:
                     pygame.quit()
                     sys.exit()
+
+        player.update()
+
 
         DISPLAY_SURFACE.fill((155, 180, 200))
 
