@@ -138,6 +138,9 @@ class Player(object):
         move_speed = Player.base_move_speed * GlobalVars.scale
         raise NotImplementedError
 
+    def get_ingredient(self, ingredient):
+        raise not NotImplementedError
+
     def use_item(self):
         if self.direction == 'up':
             x = self.current_tile['x']

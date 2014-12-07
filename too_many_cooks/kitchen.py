@@ -2,6 +2,7 @@ import os
 import pygame
 from too_many_cooks.appliance import Stove, Storage, Fryer, ChoppingBlock
 from too_many_cooks.globals import GlobalVars
+from too_many_cooks.ingredient import ingredients
 from too_many_cooks.tile import Tile
 
 
@@ -87,6 +88,7 @@ class Kitchen(object):
         self.make_tile_collidable(0, 2)
         self.tiles[0][2].appliance = fridge
         self.appliances.append(fridge)
+        fridge.contents = [ingredients['Tomato'], ingredients['Lettuce']]
         # move fridge after first level
 
         freezer = Storage(4,0, type= "freezer")
