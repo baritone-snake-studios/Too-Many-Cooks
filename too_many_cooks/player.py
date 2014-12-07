@@ -151,6 +151,14 @@ class Player(object):
                 screen.blit(self.ingredient_1.image,(x+50,y +50))
             if self.ingredient_2:
                 screen.blit(self.ingredient_2.image,(x,y +50))
+        if self.direction == "left":
+            if self.ingredient_1:
+                screen.blit(self.ingredient_1.image,(x+25,y +50))
+
+        if self.direction == "right":
+            if self.ingredient_2:
+                screen.blit(self.ingredient_2.image,(x+25,y +50))
+
 
 
     def refresh_scale(self):
