@@ -43,7 +43,7 @@ class Appliance(object):
 
         if not recieved_ingredients:
             print("You're not holding any {}".format(' or '.join(ingredients)))
-            # GlobalVars.set_menu('No Ingredient')
+            GlobalVars.show_menu('No Ingredient')
 
 
 class Storage(Appliance):

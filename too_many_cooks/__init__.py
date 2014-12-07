@@ -22,6 +22,8 @@ def run_game():
     player = Player(start_x=2, start_y=2, kitchen=kitchen)
     GlobalVars.register_game_obj(player)
 
+    GlobalVars.load_menu()
+
     time_last_update = 0
     while True:
         time = FpsClock.get_time()
@@ -61,6 +63,8 @@ def run_game():
 
         kitchen.render(screen=DISPLAY_SURFACE)
         player.render(screen=DISPLAY_SURFACE)
+
+        GlobalVars.render(screen=DISPLAY_SURFACE)
 
         pygame.display.update()
         FpsClock.tick(FPS)

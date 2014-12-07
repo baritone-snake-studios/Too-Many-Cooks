@@ -6,9 +6,10 @@ class GlobalVars(object):
 
     scale = 1.5
     registered_objects = []
-    menu_x =20
-    menu_y = 20
+    menu_x = 80 * scale
+    menu_y = 80 * scale
     menu = ""
+    menu_scale = 4.0 * scale
 
     @classmethod
     def register_game_obj(cls, obj):
@@ -30,11 +31,14 @@ class GlobalVars(object):
         GlobalVars.menu= menu_type
 
     @classmethod
-    def load_menu(cls, load_menu):
-        GlobalVars.no_ingredient_image = pygame.image.load(os.path.join('sprites', 'no_ingredient.png'))
-        GlobalVars.recipe_list_image= pygame.image.load(os.path.join('sprites', 'recipe_list.png'))
-        GlobalVars.ingredient_list= pygame.image.load(os.path.join('sprites', 'ingredient_list.png'))
-        GlobalVars.new_order= pygame.image.load(os.path.join('sprites', 'new_order.png'))
+    def load_menu(cls):
+        GlobalVars.no_ingredient_image = pygame.image.load(os.path.join('sprites', 'no_ingredients.png'))
+        size = GlobalVars.no_ingredient_image.get_width()
+        GlobalVars.no_ingredient_image = pygame.transform.scale(GlobalVars.no_ingredient_image,
+            (int(size * GlobalVars.menu_scale), int(size * GlobalVars.menu_scale)))
+        # GlobalVars.recipe_list_image= pygame.image.load(os.path.join('sprites', 'recipe_list.png'))
+        # GlobalVars.ingredient_list= pygame.image.load(os.path.join('sprites', 'ingredient_list.png'))
+        # GlobalVars.new_order= pygame.image.load(os.path.join('sprites', 'new_order.png'))
 
     @classmethod
     def render(cls, screen):

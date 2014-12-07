@@ -191,4 +191,4 @@ class Kitchen(object):
         self.appliances.append(dessertfreezer)
 
         def setup_level_four(self):
-        raise NotImplementedError
+            raise NotImplementedError
