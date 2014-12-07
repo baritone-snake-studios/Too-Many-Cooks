@@ -33,6 +33,7 @@ class CantGetItem(Exception):
 
 class Storage(Appliance):
     def __init__(self, image, contents=None):
+        image_path = (os.path.join('sprites', 'storage.png'))
         super().__init__(self, image)
         self.contents = contents
 
@@ -45,6 +46,7 @@ class Storage(Appliance):
 
 class Grill(Appliance):
     def __init__(self, image_path):
+        image_path = (os.path.join('sprites', 'grill.png'))
         super().__init__(image_path)
 
     def use(self, user):
@@ -53,6 +55,7 @@ class Grill(Appliance):
 
 class Fryer(Appliance):
     def __init__(self, image_path):
+        image_path = (os.path.join('sprites', 'fryer.png'))
         super().__init__(image_path)
 
     def use(self, user):
@@ -61,6 +64,7 @@ class Fryer(Appliance):
 
 class ChoppingBlock(Appliance):
     def __init__(self, image_path):
+        image_path = (os.path.join('sprites', 'choppingblock.png'))
         super().__init__(image_path)
 
 
@@ -70,6 +74,7 @@ class ChoppingBlock(Appliance):
 
 class Oven(Appliance):
     def __init__(self, image_path):
+        image_path = (os.path.join('sprites', 'oven.png'))
         super().__init__(image_path)
 
 
@@ -79,6 +84,7 @@ class Oven(Appliance):
 
 class CounterTop(Appliance):
     def __init__(self, image_path):
+        image_path = (os.path.join('sprites', 'countertop.png'))
         super().__init__(image_path)
 
     def use(self, user):
