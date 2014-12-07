@@ -99,6 +99,11 @@ class Kitchen(object):
         self.tiles[4][3].appliance = barrel
         self.appliances.append(barrel)
 
+        pantry = Storage(4, 2, type= "pantry")
+        self.make_tile_collidable(4, 2)
+        self.tiles[4][2].appliance = pantry
+        self.appliances.append(pantry)
+
     def setup_level_two(self):
         stove = Stove(2, 0)
         self.make_tile_collidable(2, 0)
@@ -121,8 +126,6 @@ class Kitchen(object):
         self.appliances.append(fridge)
 
 
-
-
         freezer = Storage(4,0, type= "freezer")
         self.make_tile_collidable(4, 0)
         self.tiles[4][0].appliance = freezer
@@ -133,6 +136,10 @@ class Kitchen(object):
         self.tiles[4][3].appliance = barrel
         self.appliances.append(barrel)
 
+        pantry = Storage(4, 2, type= "pantry")
+        self.make_tile_collidable(4, 2)
+        self.tiles[4][2].appliance = pantry
+        self.appliances.append(pantry)
 
     def setup_level_three(self):
         raise NotImplementedError
