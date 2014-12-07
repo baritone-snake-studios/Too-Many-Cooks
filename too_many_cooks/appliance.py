@@ -11,8 +11,8 @@ class Appliance(object):
 
         self.image = pygame.image.load(image_path)
         self.image = pygame.transform.scale(self.image,
-                                            (int(self.image.get_width() * self.scale),
-                                             int(self.image.get_height() * self.scale)))
+                               (int(self.image.get_width() * self.scale),
+                                int(self.image.get_height() * self.scale)))
 
         self.current_tile = {
             'x': start_x,
@@ -32,7 +32,7 @@ class CantGetItem(Exception):
 
 
 class Storage(Appliance):
-    def __init__(self, start_x, start_y, type, contents=None):
+    def __init__(self, start_x, start_y, type,contents=None):
         image_path = (os.path.join('sprites', '{}.png'.format(type)))
         super().__init__(image_path, start_x, start_y)
         self.contents = contents
@@ -45,27 +45,27 @@ class Storage(Appliance):
 
 
 class Grill(Appliance):
-    def __init__(self, image_path, start_x, start_y):
+    def __init__(self, image_path):
         image_path = (os.path.join('sprites', 'grill.png'))
-        super().__init__(image_path, start_x, start_y)
+        super().__init__(image_path)
 
     def use(self, user):
         ingr_1, ingr_2 = user.get_ingredients()
 
 
 class Fryer(Appliance):
-    def __init__(self, image_path, start_x, start_y):
+    def __init__(self, image_path):
         image_path = (os.path.join('sprites', 'fryer.png'))
-        super().__init__(image_path, start_x, start_y)
+        super().__init__(image_path)
 
     def use(self, user):
         ingr_1, ingr_2 = user.get_ingredients()
 
 
 class ChoppingBlock(Appliance):
-    def __init__(self, image_path, start_x, start_y):
+    def __init__(self, image_path):
         image_path = (os.path.join('sprites', 'choppingblock.png'))
-        super().__init__(image_path, start_x, start_y)
+        super().__init__(image_path)
 
 
     def use(self, user):
@@ -73,18 +73,18 @@ class ChoppingBlock(Appliance):
 
 
 class Oven(Appliance):
-    def __init__(self, image_path, start_x, start_y):
+    def __init__(self, image_path):
         image_path = (os.path.join('sprites', 'oven.png'))
-        super().__init__(image_path, start_x, start_y)
+        super().__init__(image_path)
 
     def use(self, user):
         ingr_1, ingr_2 = user.get_ingredients()
 
 
 class CounterTop(Appliance):
-    def __init__(self, image_path, start_x, start_y):
+    def __init__(self, image_path):
         image_path = (os.path.join('sprites', 'countertop.png'))
-        super().__init__(image_path, start_x, start_y)
+        super().__init__(image_path)
 
     def use(self, user):
         ingr_1, ingr_2 = user.get_ingredients()

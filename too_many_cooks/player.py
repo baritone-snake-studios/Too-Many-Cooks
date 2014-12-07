@@ -1,7 +1,7 @@
+from collections import namedtuple
 import os
-
 import pygame
-
+from too_many_cooks import Kitchen
 from too_many_cooks.globals import GlobalVars
 from too_many_cooks.tile import Tile
 
@@ -22,18 +22,18 @@ class Player(object):
 
         image = pygame.image.load(os.path.join('sprites', 'player_down.png'))
         self.down_image = pygame.transform.scale(image,
-                                                 (int(image.get_width() * self.scale),
-                                                  int(image.get_height() * self.scale)))
+                                               (int(image.get_width() * self.scale),
+                                                int(image.get_height() * self.scale)))
 
         image = pygame.image.load(os.path.join('sprites', 'player_left.png'))
         self.left_image = pygame.transform.scale(image,
-                                                 (int(image.get_width() * self.scale),
-                                                  int(image.get_height() * self.scale)))
+                                               (int(image.get_width() * self.scale),
+                                                int(image.get_height() * self.scale)))
 
         image = pygame.image.load(os.path.join('sprites', 'player_right.png'))
         self.right_image = pygame.transform.scale(image,
-                                                  (int(image.get_width() * self.scale),
-                                                   int(image.get_height() * self.scale)))
+                                               (int(image.get_width() * self.scale),
+                                                int(image.get_height() * self.scale)))
         self.image = self.down_image
         self.collision_fudge = self.image.get_width() * 0.25
 
@@ -70,17 +70,17 @@ class Player(object):
             self.pos_in_tile['x'] += Player.move_speed
             self.image = self.right_image
 
-        # ##
+        ###
 
         if self.pos_in_tile['x'] > Tile.size_px - self.collision_fudge:
-            if self.kitchen.is_walkable(self.current_tile['x'] + 1, self.current_tile['y']):
+            if self.kitchen.is_walkable(self.current_tile['x']+1, self.current_tile['y']):
                 if self.pos_in_tile['x'] > Tile.size_px:
                     self.pos_in_tile['x'] -= Tile.size_px
                     self.current_tile['x'] += 1
             else:
                 self.pos_in_tile['x'] = Tile.size_px - self.collision_fudge
         if self.pos_in_tile['x'] < 0 + self.collision_fudge:
-            if self.kitchen.is_walkable(self.current_tile['x'] - 1, self.current_tile['y']):
+            if self.kitchen.is_walkable(self.current_tile['x']-1, self.current_tile['y']):
                 if self.pos_in_tile['x'] < 0:
                     self.pos_in_tile['x'] += Tile.size_px
                     self.current_tile['x'] -= 1
@@ -88,14 +88,14 @@ class Player(object):
                 self.pos_in_tile['x'] = 0 + self.collision_fudge
 
         if self.pos_in_tile['y'] > Tile.size_px - self.collision_fudge:
-            if self.kitchen.is_walkable(self.current_tile['x'], self.current_tile['y'] + 1):
+            if self.kitchen.is_walkable(self.current_tile['x'], self.current_tile['y']+1):
                 if self.pos_in_tile['y']:
                     self.pos_in_tile['y'] -= Tile.size_px
                     self.current_tile['y'] += 1
             else:
                 self.pos_in_tile['y'] = Tile.size_px - self.collision_fudge
         if self.pos_in_tile['y'] < 0 + self.collision_fudge:
-            if self.kitchen.is_walkable(self.current_tile['x'], self.current_tile['y'] - 1):
+            if self.kitchen.is_walkable(self.current_tile['x'], self.current_tile['y']-1):
                 if self.pos_in_tile['y'] < 0:
                     self.pos_in_tile['y'] += Tile.size_px
                     self.current_tile['y'] -= 1
@@ -135,7 +135,6 @@ class Player(object):
         pygame.draw.rect(screen, (255, 50, 255), rect, 3)
 
     def refresh_scale(self):
-        scale = GlobalVars.scale * 4.0
         move_speed = Player.base_move_speed * GlobalVars.scale
         raise NotImplementedError
 
