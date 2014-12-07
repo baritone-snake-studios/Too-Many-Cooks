@@ -6,6 +6,10 @@ from too_many_cooks.globals import GlobalVars
 from too_many_cooks.tile import Tile
 
 
+class HandsFullError(Exception):
+    pass
+
+
 class Player(object):
     base_move_speed = 5
     move_speed = base_move_speed * GlobalVars.scale
@@ -139,7 +143,13 @@ class Player(object):
         raise NotImplementedError
 
     def get_ingredient(self, ingredient):
-        raise not NotImplementedError
+        if not self.ingredient_1:
+            self.ingredient_1 = ingredient
+            return
+        if not self.ingredient_2:
+            self.ingredient_2 = ingredient
+            return
+        raise HandsFullError
 
     def use_item(self):
         if self.direction == 'up':
