@@ -17,8 +17,10 @@ def run_game():
 
     kitchen = Kitchen(width=6, height=4)
     GlobalVars.register_game_obj(kitchen)
-    player = Player(2, 2)
+
+    player = Player(start_x=2, start_y=2, kitchen=kitchen)
     GlobalVars.register_game_obj(player)
+    
     stove = Stove(6,4)
     kitchen.make_tile_collidable(6,4)
 
