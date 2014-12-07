@@ -10,6 +10,10 @@ class HandsFullError(Exception):
     pass
 
 
+class NoIngredientError(Exception):
+    pass
+
+
 class Player(object):
     base_move_speed = 5
     move_speed = base_move_speed * GlobalVars.scale
@@ -150,6 +154,18 @@ class Player(object):
             self.ingredient_2 = ingredient
             return
         raise HandsFullError
+
+    def use_ingredient(self, ingredient_name):
+        ingr = None
+        if self.ingredient_1.name == ingredient_name:
+            ingr = self.ingredient_1
+            self.ingredient_1 = None
+        elif self.ingredient_2.name == ingredient_name:
+            ingr = self.ingredient_2
+            self.ingredient_2 = None
+        if ingr is not None:
+            return ingr
+        raise NoIngredientError
 
     def use_item(self):
         if self.direction == 'up':
