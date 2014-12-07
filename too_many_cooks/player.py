@@ -50,6 +50,10 @@ class Player(object):
         self.moving_down = False
         self.moving_left = False
         self.moving_right = False
+        self.direction = 'down'
+
+        self.ingredient_1 = None
+        self.ingredient_2 = None
 
     def update(self):
         if self.moving_up:
@@ -101,6 +105,8 @@ class Player(object):
         # print('Tile: {}, {}  |  Offset: {}, {}'.format(self.current_tile['x'], self.current_tile['y'], self.pos_in_tile['x'], self.pos_in_tile['y']))
 
     def set_direction(self, direction):
+        self.direction = direction
+
         self.moving_up = False
         self.moving_down = False
         self.moving_left = False
@@ -116,15 +122,36 @@ class Player(object):
             self.moving_right = True
 
     def render(self, screen):
-        x, y = Kitchen.tile_to_pixel(current_tile=self.current_tile, pos_in_tile=self.pos_in_tile)
+        x, y = Tile.tile_to_pixel(current_tile=self.current_tile, pos_in_tile=self.pos_in_tile)
         x -= self.image.get_width() / 2
         y -= self.image.get_height() / 2
         screen.blit(self.image, (x, y))
         rect = self.image.get_rect()
-        rect = rect.move(Kitchen.tile_to_pixel(current_tile=self.current_tile))
+        rect = rect.move(Tile.tile_to_pixel(current_tile=self.current_tile))
         pygame.draw.rect(screen, (255, 50, 255), rect, 3)
 
     def refresh_scale(self):
         move_speed = Player.base_move_speed * GlobalVars.scale
         raise NotImplementedError
+
+    def use_item(self):
+        if self.direction == 'up':
+            x = self.current_tile['x']
+            y = self.current_tile['y'] - 1
+            self.kitchen.tiles[x][y].use(self)
+        elif self.direction == 'down':
+            x = self.current_tile['x']
+            y = self.current_tile['y'] + 1
+            self.kitchen.tiles[x][y].use(self)
+        elif self.direction == 'right':
+            x = self.current_tile['x'] + 1
+            y = self.current_tile['y']
+            self.kitchen.tiles[x][y].use(self)
+        elif self.direction == 'left':
+            x = self.current_tile['x'] - 1
+            y = self.current_tile['y']
+            self.kitchen.tiles[x][y].use(self)
+
+    def get_ingredients(self):
+        return self.ingredient_1, self.ingredient_2
 

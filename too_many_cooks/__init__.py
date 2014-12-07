@@ -7,6 +7,7 @@ from too_many_cooks.player import Player
 
 
 def run_game():
+    current_level = 1
     pygame.init()
     window_width, window_height= get_window_size()
     DISPLAY_SURFACE = pygame.display.set_mode((window_width, window_height))
@@ -17,12 +18,10 @@ def run_game():
 
     kitchen = Kitchen(width=6, height=4)
     GlobalVars.register_game_obj(kitchen)
+    kitchen.setup_level(current_level)
 
     player = Player(start_x=2, start_y=2, kitchen=kitchen)
     GlobalVars.register_game_obj(player)
-
-    stove = Stove(5, 3)
-    kitchen.make_tile_collidable(5, 3)
 
     time_last_update = 0
     while True:
@@ -44,6 +43,8 @@ def run_game():
                     player.set_direction('left')
                 if event.key == pygame.K_RIGHT:
                     player.set_direction('right')
+                if event.key == pygame.K_SPACE:
+                    player.use_item()
 
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_UP:
@@ -61,7 +62,7 @@ def run_game():
 
         kitchen.render(screen=DISPLAY_SURFACE)
         player.render(screen=DISPLAY_SURFACE)
-        stove.render(screen=DISPLAY_SURFACE)
+
         pygame.display.update()
         FpsClock.tick(FPS)
 

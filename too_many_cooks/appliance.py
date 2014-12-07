@@ -1,7 +1,7 @@
 import os
 import pygame
 from too_many_cooks.globals import GlobalVars
-from too_many_cooks.kitchen import Kitchen
+from too_many_cooks.tile import Tile
 
 
 class Appliance(object):
@@ -20,7 +20,7 @@ class Appliance(object):
         }
 
     def render(self, screen):
-        x, y = Kitchen.tile_to_pixel(current_tile=self.current_tile)
+        x, y = Tile.tile_to_pixel(current_tile=self.current_tile)
         screen.blit(self.image, (x, y))
 
     def use(self, user):
@@ -77,7 +77,6 @@ class Oven(Appliance):
         image_path = (os.path.join('sprites', 'oven.png'))
         super().__init__(image_path)
 
-
     def use(self, user):
         ingr_1, ingr_2 = user.get_ingredients()
 
@@ -98,6 +97,7 @@ class Stove(Appliance):
 
     def use(self, user):
         ingr_1, ingr_2 = user.get_ingredients()
+        print('You have {} in your left hand, and {} in your right hand'.format(ingr_1, ingr_2))
 
 
 
