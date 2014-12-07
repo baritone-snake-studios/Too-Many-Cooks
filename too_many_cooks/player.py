@@ -15,5 +15,10 @@ class Player(object):
         self.vel_x = 0.0
         self.vel_y = 0.0
 
+<<<<<<< HEAD
     def render(self, screen):
         screen.blit(self.image, (1, 5))
+=======
+    def refresh_scale(self):
+        raise NotImplementedError
+>>>>>>> origin/master
