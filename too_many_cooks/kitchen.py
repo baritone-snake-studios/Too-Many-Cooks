@@ -22,7 +22,6 @@ class Kitchen(object):
                 tile_row.append(Tile(image=floor_image, is_colliding=False))
             self.tiles.append(tile_row)
 
-
     def render(self, screen):
         tile_x = 0
         tile_y = 0

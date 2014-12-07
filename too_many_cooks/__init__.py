@@ -15,12 +15,10 @@ def run_game():
     FpsClock = pygame.time.Clock()
 
     kitchen = Kitchen(width=6, height=4)
-<<<<<<< HEAD
-    player = Player()
-=======
     GlobalVars.register_game_obj(kitchen)
+    player = Player()
+    GlobalVars.register_game_obj(player)
 
->>>>>>> origin/master
     time_last_update = 0
     while True:
         time = FpsClock.get_time()

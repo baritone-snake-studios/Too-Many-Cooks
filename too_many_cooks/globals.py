@@ -1,11 +1,8 @@
 
 class GlobalVars(object):
-<<<<<<< HEAD
-    scale = 2.5
-=======
+
     scale = 1.0
     registered_objects = []
->>>>>>> origin/master
 
     @classmethod
     def register_game_obj(cls, obj):
