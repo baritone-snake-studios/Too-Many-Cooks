@@ -66,13 +66,13 @@ class Player(object):
         if self.pos_in_tile['x'] > Tile.size_px:
             self.pos_in_tile['x'] -= Tile.size_px
             self.current_tile['x'] += 1
-        if self.pos_in_tile['x'] < Tile.size_px:
+        if self.pos_in_tile['x'] < 0:
             self.pos_in_tile['x'] += Tile.size_px
             self.current_tile['x'] -= 1
         if self.pos_in_tile['y'] > Tile.size_px:
             self.pos_in_tile['y'] -= Tile.size_px
             self.current_tile['y'] += 1
-        if self.pos_in_tile['y'] < Tile.size_px:
+        if self.pos_in_tile['y'] < 0:
             self.pos_in_tile['y'] += Tile.size_px
             self.current_tile['y'] -= 1
 
