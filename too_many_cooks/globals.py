@@ -6,6 +6,8 @@ class GlobalVars(object):
 
     scale = 1.5
     registered_objects = []
+    menu_x =20
+    menu_y = 20
 
     @classmethod
     def register_game_obj(cls, obj):
@@ -34,4 +36,6 @@ class GlobalVars(object):
         GlobalVars.new_order= pygame.image.load(os.path.join('sprites', 'new_order.png'))
 
     @classmethod
-    def
+    def render(cls, screen):
+        if GlobalVars.menu== "No Ingredient":
+            screen.blit(self.image, (menu_x, menu_y))
