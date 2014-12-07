@@ -3,7 +3,7 @@ import pygame
 
 
 class GlobalVars(object):
-
+    contents = None
     scale = 1.5
     registered_objects = []
     menu_x = 80 * scale
@@ -26,21 +26,46 @@ class GlobalVars(object):
 
         for obj in GlobalVars.registered_objects:
             obj.refresh_scale()
+
     @classmethod
-    def show_menu(cls, menu_type):
-        GlobalVars.menu= menu_type
+    def show_menu(cls, menu_type, contents=None):
+        GlobalVars.contents = contents
+        GlobalVars.menu = menu_type
 
     @classmethod
     def load_menu(cls):
         GlobalVars.no_ingredient_image = pygame.image.load(os.path.join('sprites', 'no_ingredients.png'))
         size = GlobalVars.no_ingredient_image.get_width()
         GlobalVars.no_ingredient_image = pygame.transform.scale(GlobalVars.no_ingredient_image,
-            (int(size * GlobalVars.menu_scale), int(size * GlobalVars.menu_scale)))
+                                                                (int(size * GlobalVars.menu_scale),
+                                                                 int(size * GlobalVars.menu_scale)))
+
+        GlobalVars.ingredient_list_image = pygame.image.load(os.path.join('sprites', 'ingredient_list.png'))
+        GlobalVars.ingredient_list_image = pygame.transform.scale(GlobalVars.ingredient_list_image,
+                                                                  (int(size * GlobalVars.menu_scale),
+                                                                   int(size * GlobalVars.menu_scale)))
         # GlobalVars.recipe_list_image= pygame.image.load(os.path.join('sprites', 'recipe_list.png'))
-        # GlobalVars.ingredient_list= pygame.image.load(os.path.join('sprites', 'ingredient_list.png'))
         # GlobalVars.new_order= pygame.image.load(os.path.join('sprites', 'new_order.png'))
 
     @classmethod
     def render(cls, screen):
-        if GlobalVars.menu== "No Ingredient":
+        if GlobalVars.menu == "No Ingredient":
             screen.blit(GlobalVars.no_ingredient_image, (GlobalVars.menu_x, GlobalVars.menu_y))
+
+        if GlobalVars.menu == "Show Ingredients":
+            if GlobalVars.contents is None:
+                raise ValueError('Cannot use Show Ingredients Menu without contents argument.')
+            screen.blit(GlobalVars.ingredient_list_image, (GlobalVars.menu_x, GlobalVars.menu_y))
+
+            menu_start_x = GlobalVars.menu_x + 95
+            menu_start_y = GlobalVars.menu_y + 95
+            menu_offset_x = 160  # TODO: Hard-coding numbers is bad
+            menu_offset_y = 125
+
+            if len(GlobalVars.contents):
+                screen.blit(GlobalVars.contents[0].image,
+                            (menu_start_x, menu_start_y))
+            if len(GlobalVars.contents) >= 2:
+                screen.blit(GlobalVars.contents[1].image,
+                            (menu_start_x + menu_offset_x, menu_start_y + menu_offset_y))
+

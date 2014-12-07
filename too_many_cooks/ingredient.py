@@ -1,12 +1,18 @@
 import os
 import pygame
+from too_many_cooks import GlobalVars
 
 
 class Ingredient(object):
+    menu_scale = 0.5
     def __init__(self, name, image_path):
         super().__init__()
         self.name = name
-        # self.image = pygame.image.load(image_path)
+        self.image = pygame.image.load(image_path)
+        size = self.image.get_width()
+        self.image = pygame.transform.scale(self.image,
+                                            (int(size * GlobalVars.menu_scale * Ingredient.menu_scale),
+                                             int(size * GlobalVars.menu_scale * Ingredient.menu_scale)))
 
     def __repr__(self):
         return self.name
@@ -17,8 +23,6 @@ burger_bun = Ingredient('Buger Buns', os.path.join('sprites', 'burger_bun.png'))
 Potato = Ingredient('Potato', os.path.join('sprites', 'potato.png'))
 lettuce = Ingredient('Lettuce', os.path.join('sprites', 'lettuce.png'))
 tomato = Ingredient('Tomato', os.path.join('sprites', 'tomato.png'))
-
-
 
 ingredients = {
     'Beef Patty': beef_patty,
