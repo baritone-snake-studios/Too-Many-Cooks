@@ -95,13 +95,13 @@ class Player(object):
             else:
                 self.pos_in_tile['x'] = 0 + self.collision_fudge
 
-        if self.pos_in_tile['y'] > Tile.size_px - self.collision_fudge:
+        if self.pos_in_tile['y'] > Tile.size_px - self.collision_fudge * 1.8:
             if self.kitchen.is_walkable(self.current_tile['x'], self.current_tile['y']+1):
                 if self.pos_in_tile['y']:
                     self.pos_in_tile['y'] -= Tile.size_px
                     self.current_tile['y'] += 1
             else:
-                self.pos_in_tile['y'] = Tile.size_px - self.collision_fudge
+                self.pos_in_tile['y'] = Tile.size_px - self.collision_fudge * 1.8
         if self.pos_in_tile['y'] < 0 + self.collision_fudge:
             if self.kitchen.is_walkable(self.current_tile['x'], self.current_tile['y']-1):
                 if self.pos_in_tile['y'] < 0:
