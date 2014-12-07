@@ -104,6 +104,10 @@ class Player(object):
 
         # print('Tile: {}, {}  |  Offset: {}, {}'.format(self.current_tile['x'], self.current_tile['y'], self.pos_in_tile['x'], self.pos_in_tile['y']))
 
+    def hands_are_full(self):
+        if self.ingredient_1 and self.ingredient_2:
+            return False
+
     def set_direction(self, direction):
         self.direction = direction
 
