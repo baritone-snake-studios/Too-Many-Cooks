@@ -92,7 +92,7 @@ class Player(object):
             self.moving_right = True
 
     def render(self, screen):
-        x, y = Kitchen.tile_to_pixel(self.current_tile, self.pos_in_tile)
+        x, y = Kitchen.tile_to_pixel(current_tile=self.current_tile, pos_in_tile=self.pos_in_tile)
         screen.blit(self.image, (x, y))
 
     def refresh_scale(self):
