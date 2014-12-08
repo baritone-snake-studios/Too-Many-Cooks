@@ -18,13 +18,13 @@ def run_game():
 
     kitchen = Kitchen(width=4, height=3)
     GlobalVars.register_game_obj(kitchen)
-    kitchen.setup_level(current_level)
+    kitchen.setup_level(1)
 
     player = Player(start_x=2, start_y=2, kitchen=kitchen)
     GlobalVars.register_game_obj(player)
     GlobalVars.player = player
 
-    cooks = [Cook(start_x=1, start_y=1, kitchen=kitchen)]
+    cooks = [Cook(start_x=0, start_y=1, kitchen=kitchen)]
     GlobalVars.register_game_obj(cooks[0])
     cooks[0].pos_in_tile = {'x': 50, 'y': 50}
 
@@ -94,7 +94,6 @@ def run_game():
                 cook.collision = False
 
         if cook_collision:
-            print('collision')
             player.current_tile = player_old_tile
             player.pos_in_tile = player_old_pos_in_tile
 
@@ -113,19 +112,32 @@ def run_game():
 
         if GlobalVars.go_to_next_level:
             GlobalVars.go_to_next_level = False
-            del kitchen
 
             if GlobalVars.level == 2:
+                GlobalVars.deregister([kitchen])
                 kitchen = Kitchen(4, 3)
                 kitchen.setup_level_two()
+                player.kitchen = kitchen
+
+                GlobalVars.deregister(cooks)
+                cooks = [Cook(start_x=1, start_y=1, kitchen=kitchen)]
+                GlobalVars.register_game_obj(cooks[0])
+                cooks[0].pos_in_tile = {'x': 50, 'y': 50}
 
             if GlobalVars.level == 3:
+                GlobalVars.deregister([kitchen])
                 kitchen = Kitchen(5, 3)
                 kitchen.setup_level_three()
+                player.kitchen = kitchen
+
+                GlobalVars.deregister(cooks)
 
             if GlobalVars.level == 4:
+                GlobalVars.deregister([kitchen])
                 kitchen = Kitchen(7, 5)
                 kitchen.setup_level_four()
+
+                GlobalVars.deregister(cooks)
 
 def get_window_size():
     return 800, 600  # TODO

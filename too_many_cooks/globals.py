@@ -122,18 +122,25 @@ class GlobalVars(object):
     @classmethod
     def check_level_upgrade(cls):
         if cls.level == 1:
-            if cls.score >= 30:
+            if cls.score >= 20:
                 cls.level = 2
                 cls.go_to_next_level = True
 
         if cls.level == 2:
-            if cls.score >= 50:
+            if cls.score >= 40:
                 cls.level = 3
                 cls.go_to_next_level = True
 
         if cls.level == 3:
-            if cls.score >= 70:
+            if cls.score >= 60:
                 cls.level = 4
                 cls.go_to_next_level = True
+
+    @classmethod
+    def deregister(cls, objs):
+        for obj in objs:
+            for obj2 in cls.registered_objects:
+                if obj is obj2:
+                    cls.registered_objects.remove(obj)
 
 
