@@ -125,6 +125,10 @@ class CounterTop(Appliance):
 
     def render(self, screen):
         super().render(screen)
+        x, y = Tile.tile_to_pixel(current_tile=self.current_tile)
+        for ingredient in self.contents:
+            screen.blit(ingredient.image,(x,y))
+
 
 
 class Stove(Appliance):
