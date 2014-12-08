@@ -163,6 +163,7 @@ class Player(object):
     def get_ingredient(self, ingredient):
         if not self.ingredient_1:
             self.ingredient_1 = ingredient
+            return
         if not self.ingredient_2:
             self.ingredient_2 = ingredient
             return
