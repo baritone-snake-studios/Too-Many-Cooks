@@ -90,8 +90,13 @@ class GlobalVars(object):
                 screen.blit(GlobalVars.contents[3].image,
                             (menu_start_x + menu_offset_x, menu_start_y + menu_offset_y))
 
-        if cls.render:
-            
+        if cls.render_score:
+            if cls.render_count == 0:
+                cls.render_count = 90
+            cls.render_count -= 1
+            if cls.render_count == 0:
+                cls.render_score = False
+
             myfont = pygame.font.SysFont("system", 60)
             label = myfont.render(str(cls.score), 1, (240, 215, 20))
             x, y = Tile.tile_to_pixel(current_tile=cls.player.current_tile, pos_in_tile=cls.player.pos_in_tile)
