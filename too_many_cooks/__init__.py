@@ -25,6 +25,9 @@ def run_game():
     GlobalVars.register_game_obj(player)
     GlobalVars.player = player
 
+    GlobalVars.level = 3
+    GlobalVars.go_to_next_level = True
+
     game_cooks = []
 
     GlobalVars.load_menu()
@@ -122,7 +125,6 @@ def run_game():
                 game_cooks = []
 
                 cook = Cook(start_x=1, start_y=1, kitchen=kitchen)
-                cook.pos_in_tile = {'x': 50, 'y': 50}
                 cook.add_path(direction='down', tiles=3, speed=2, wait_after=50)
                 cook.add_path(direction='up', tiles=3, speed=2, wait_after=200)
                 cook.go()
@@ -131,14 +133,45 @@ def run_game():
                 for cook in game_cooks:
                     GlobalVars.register_game_obj(cook)
 
-
             if GlobalVars.level == 3:
                 GlobalVars.deregister([kitchen])
                 kitchen = Kitchen(5, 3)
                 kitchen.setup_level_three()
                 player.kitchen = kitchen
+                player.current_tile = {'x': 0, 'y': 3}
 
                 GlobalVars.deregister(game_cooks)
+                game_cooks = []
+
+                cook = Cook(start_x=1, start_y=1, kitchen=kitchen)
+                cook.add_path(direction='down', tiles=3, speed=2, wait_after=50)
+                cook.add_path(direction='up', tiles=3, speed=2, wait_after=200)
+                cook.add_path(direction='left', tiles=1, speed=2, wait_after=50)
+                cook.add_path(direction='right', tiles=2, speed=2, wait_after=50)
+                cook.add_path(direction='left', tiles=1, speed=2, wait_after=50)
+                cook.go()
+                game_cooks.append(cook)
+
+                cook = Cook(start_x=4, start_y=1, kitchen=kitchen)
+                cook.add_path(direction='up', tiles=1, speed=2, wait_after=50)
+                cook.add_path(direction='down', tiles=1, speed=2, wait_after=200)
+                cook.add_path(direction='left', tiles=3, speed=2, wait_after=50)
+                cook.add_path(direction='right', tiles=3, speed=2, wait_after=200)
+                cook.add_path(direction='down', tiles=2, speed=2, wait_after=50)
+                cook.add_path(direction='up', tiles=2, speed=2, wait_after=200)
+                cook.go()
+                game_cooks.append(cook)
+
+                cook = Cook(start_x=2, start_y=3, kitchen=kitchen)
+                cook.add_path(direction='right', tiles=2, speed=2, wait_after=200)
+                cook.add_path(direction='up', tiles=2, speed=2, wait_after=200)
+                cook.add_path(direction='left', tiles=2, speed=2, wait_after=200)
+                cook.add_path(direction='down', tiles=2, speed=2, wait_after=50)
+                cook.go()
+                game_cooks.append(cook)
+
+                for cook in game_cooks:
+                    GlobalVars.register_game_obj(cook)
 
             if GlobalVars.level == 4:
                 GlobalVars.deregister([kitchen])
