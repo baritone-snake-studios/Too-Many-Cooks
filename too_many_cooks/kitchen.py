@@ -121,7 +121,6 @@ class Kitchen(object):
 
 
     def setup_level_two(self):
-        def setup_level_one(self):
         grill = Grill(2, 0)
         self.make_tile_collidable(2, 0)
         self.tiles[2][0].appliance = grill
@@ -149,9 +148,9 @@ class Kitchen(object):
         fridge.contents = [ingredients['Tomato'], ingredients['Lettuce']]
         # move fridge after second level
 
-        freezer = Storage(5, 0, type="freezer")
-        self.make_tile_collidable(5, 0)
-        self.tiles[5][0].appliance = freezer
+        freezer = Storage(4, 0, type="freezer")
+        self.make_tile_collidable(4, 0)
+        self.tiles[4][0].appliance = freezer
         self.appliances.append(freezer)
         freezer.contents = [ingredients['Beef Patty']]
 
