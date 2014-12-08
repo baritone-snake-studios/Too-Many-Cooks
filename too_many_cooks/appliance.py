@@ -67,8 +67,8 @@ class Grill(Appliance):
         super().__init__(image_path, start_x, start_y)
 
     def use(self, user):
-        self.recieve_ingredients(user, ['Beef Patty', 'Bacon'])
-
+        if self.recieve_ingredients(user, ['Beef Patty', 'Bacon']):
+            GlobalVars.player.get_ingredient(ingredient.cooked_beef_patty)
 
 class Fryer(Appliance):
     def __init__(self, start_x, start_y):
