@@ -1,6 +1,7 @@
 import os
 
 import pygame
+from too_many_cooks import ingredient
 
 from too_many_cooks.errors import CantGetItem, NoIngredientError
 from too_many_cooks.globals import GlobalVars
@@ -76,7 +77,7 @@ class Fryer(Appliance):
 
     def use(self, user):
         if self.recieve_ingredients(user, ['Potato']):
-            GlobalVars.player.get_ingredient(GlobalVars.contents[option])
+            GlobalVars.player.get_ingredient(ingredient.fries)
 
 
 
