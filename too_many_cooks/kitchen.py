@@ -93,7 +93,7 @@ class Kitchen(object):
         self.tiles[3][0].appliance = countertop
         self.appliances.append(countertop)
 
-        fridge = Storage(0, 2, type="fridge")
+        fridge = Storage(0, 2, type="fridge", allowed_directions=['up'])
         self.make_tile_collidable(0, 2)
         self.tiles[0][2].appliance = fridge
         self.appliances.append(fridge)
@@ -112,7 +112,7 @@ class Kitchen(object):
         self.appliances.append(barrel)
         barrel.contents = [ingredients['Potato']]
 
-        pantry = Storage(4, 2, type="pantry")
+        pantry = Storage(4, 2, type="pantry", allowed_directions=['right'])
         self.make_tile_collidable(4, 2)
         self.tiles[4][2].appliance = pantry
         self.appliances.append(pantry)
@@ -141,7 +141,7 @@ class Kitchen(object):
         self.tiles[2][2].appliance = choppingblock
         self.appliances.append(choppingblock)
 
-        fridge = Storage(5, 0, type="fridge")
+        fridge = Storage(5, 0, type="fridge", allowed_directions=['up'])
         self.make_tile_collidable(5, 0)
         self.tiles[5][0].appliance = fridge
         self.appliances.append(fridge)

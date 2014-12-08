@@ -54,15 +54,18 @@ class Appliance(object):
 
 
 class Storage(Appliance):
-    def __init__(self, start_x, start_y, type, contents=None):
+    def __init__(self, start_x, start_y, type, contents=None, allowed_directions=None):
         image_path = (os.path.join('sprites', '{}.png'.format(type)))
         super().__init__(image_path, start_x, start_y)
+
         self.contents = contents
+        self.allowed_directions = allowed_directions
 
     def use(self, user):
         if user.hands_are_full():
             raise CantGetItem
-        GlobalVars.show_menu('Show Ingredients', contents=self.contents)
+        if not self.allowed_directions or user.direction in self.allowed_directions:
+            GlobalVars.show_menu('Show Ingredients', contents=self.contents)
 
 
 class Grill(Appliance):
