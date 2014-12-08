@@ -1,6 +1,7 @@
 
 class Recipe(object):
-    def can_make(self, ingredients):
+    @classmethod
+    def can_make(cls, ingredients):
         pass
 
 
