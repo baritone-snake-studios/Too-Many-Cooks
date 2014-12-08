@@ -19,7 +19,7 @@ class Ingredient(object):
 
 
 beef_patty = Ingredient('Beef Patty', os.path.join('sprites', 'beef_patty.png'))
-burger_bun = Ingredient('Buger Buns', os.path.join('sprites', 'burger_bun.png'))
+burger_bun = Ingredient('Burger Buns', os.path.join('sprites', 'burger_bun.png'))
 Potato = Ingredient('Potato', os.path.join('sprites', 'potato.png'))
 lettuce = Ingredient('Lettuce', os.path.join('sprites', 'lettuce.png'))
 tomato = Ingredient('Tomato', os.path.join('sprites', 'tomato.png'))
