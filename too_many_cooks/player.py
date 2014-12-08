@@ -182,22 +182,29 @@ class Player(object):
         raise NoIngredientError
 
     def use_item(self):
-        if self.direction == 'up':
-            x = self.current_tile['x']
-            y = self.current_tile['y'] - 1
-            self.kitchen.tiles[x][y].use(self)
-        elif self.direction == 'down':
-            x = self.current_tile['x']
-            y = self.current_tile['y'] + 1
-            self.kitchen.tiles[x][y].use(self)
-        elif self.direction == 'right':
-            x = self.current_tile['x'] + 1
-            y = self.current_tile['y']
-            self.kitchen.tiles[x][y].use(self)
-        elif self.direction == 'left':
-            x = self.current_tile['x'] - 1
-            y = self.current_tile['y']
-            self.kitchen.tiles[x][y].use(self)
+        try:
+            if self.direction == 'up':
+                x = self.current_tile['x']
+                y = self.current_tile['y'] - 1
+                if y < 0:
+                    return
+                self.kitchen.tiles[x][y].use(self)
+            elif self.direction == 'down':
+                x = self.current_tile['x']
+                y = self.current_tile['y'] + 1
+                self.kitchen.tiles[x][y].use(self)
+            elif self.direction == 'right':
+                x = self.current_tile['x'] + 1
+                y = self.current_tile['y']
+                self.kitchen.tiles[x][y].use(self)
+            elif self.direction == 'left':
+                x = self.current_tile['x'] - 1
+                y = self.current_tile['y']
+                if x < 0:
+                    return
+                self.kitchen.tiles[x][y].use(self)
+        except IndexError:
+            pass
 
     def get_ingredients(self):
         return self.ingredient_1, self.ingredient_2
