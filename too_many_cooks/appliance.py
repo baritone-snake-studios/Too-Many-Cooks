@@ -31,11 +31,13 @@ class Appliance(object):
     def use(self, user):
         pass
 
-    def recieve_ingredients(self, user, ingredients):
+    def recieve_ingredients(self, user, ingredients, keep_ingredients=False):
         recieved_ingredients = False
         for ingredient in ingredients:
             try:
-                user.use_ingredient(ingredient)
+                ingr = user.use_ingredient(ingredient)
+                if keep_ingredients:
+                    self.contents.append(ingr)
                 recieved_ingredients = True
                 print('Used {}'.format(ingredient))
             except NoIngredientError:
