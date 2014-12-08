@@ -1,6 +1,6 @@
 import os
 import pygame
-from too_many_cooks.appliance import Stove, Storage, Fryer, ChoppingBlock, Grill, Oven
+from too_many_cooks.appliance import Stove, Storage, Fryer, ChoppingBlock, Grill, Oven, CounterTop
 from too_many_cooks.globals import GlobalVars
 from too_many_cooks.ingredient import ingredients
 from too_many_cooks.tile import Tile
@@ -88,6 +88,11 @@ class Kitchen(object):
         self.tiles[1][0].appliance = fryer
         self.appliances.append(fryer)
 
+        countertop = CounterTop(3, 0)
+        self.make_tile_collidable(3, 0)
+        self.tiles[3][0].appliance = countertop
+        self.appliances.append(countertop)
+
         fridge = Storage(0, 2, type="fridge")
         self.make_tile_collidable(0, 2)
         self.tiles[0][2].appliance = fridge
@@ -124,6 +129,11 @@ class Kitchen(object):
         self.tiles[1][0].appliance = fryer
         self.appliances.append(fryer)
 
+        countertop = CounterTop(3, 0)
+        self.make_tile_collidable(1, 0)
+        self.tiles[1][0].appliance = countertop
+        self.appliances.append(countertop)
+
         choppingblock = ChoppingBlock(1, 0)
         self.make_tile_collidable(1, 0)
         self.tiles[1][0].appliance = choppingblock
@@ -159,6 +169,11 @@ class Kitchen(object):
         self.make_tile_collidable(1, 0)
         self.tiles[1][0].appliance = fryer
         self.appliances.append(fryer)
+
+        countertop = CounterTop(3, 0)
+        self.make_tile_collidable(1, 0)
+        self.tiles[1][0].appliance = countertop
+        self.appliances.append(countertop)
 
         choppingblock = ChoppingBlock(1, 0)
         self.make_tile_collidable(1, 0)
@@ -200,6 +215,11 @@ class Kitchen(object):
         self.make_tile_collidable(1, 0)
         self.tiles[1][0].appliance = fryer
         self.appliances.append(fryer)
+
+        countertop = CounterTop(3, 0)
+        self.make_tile_collidable(1, 0)
+        self.tiles[1][0].appliance = countertop
+        self.appliances.append(countertop)
 
         choppingblock = ChoppingBlock(2, 2)
         self.make_tile_collidable(2, 2)
