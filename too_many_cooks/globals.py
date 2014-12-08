@@ -125,14 +125,12 @@ class GlobalVars(object):
             if cls.score >= 20:
                 cls.level = 2
                 cls.go_to_next_level = True
-
-        if cls.level == 2:
-            if cls.score >= 40:
+        elif cls.level == 2:
+            if cls.score >= 50:
                 cls.level = 3
                 cls.go_to_next_level = True
-
-        if cls.level == 3:
-            if cls.score >= 60:
+        elif cls.level == 3:
+            if cls.score >= 100:
                 cls.level = 4
                 cls.go_to_next_level = True
 

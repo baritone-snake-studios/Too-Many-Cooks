@@ -25,7 +25,7 @@ def run_game():
     GlobalVars.register_game_obj(player)
     GlobalVars.player = player
 
-    GlobalVars.level = 3
+    GlobalVars.level = 1
     GlobalVars.go_to_next_level = True
 
     game_cooks = []
