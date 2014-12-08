@@ -63,7 +63,7 @@ class Grill(Appliance):
         super().__init__(image_path, start_x, start_y)
 
     def use(self, user):
-        self.recieve_ingredients(user, ['Beed Patty', 'Bacon'])
+        self.recieve_ingredients(user, ['Beef Patty', 'Bacon'])
 
 
 class Fryer(Appliance):
