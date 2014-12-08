@@ -13,28 +13,33 @@ class Cook(object):
         self.kitchen = kitchen
         self.scale = GlobalVars.scale * 4
 
-        image = pygame.image.load(os.path.join('sprites', 'player_up.png'))
+        image = pygame.image.load(os.path.join('sprites', 'cook_up.png'))
         self.up_image = pygame.transform.scale(image,
                                                (int(image.get_width() * self.scale),
                                                 int(image.get_height() * self.scale)))
 
-        image = pygame.image.load(os.path.join('sprites', 'player_down.png'))
+        image = pygame.image.load(os.path.join('sprites', 'cook_down.png'))
         self.down_image = pygame.transform.scale(image,
                                                  (int(image.get_width() * self.scale),
                                                   int(image.get_height() * self.scale)))
 
-        image = pygame.image.load(os.path.join('sprites', 'player_left.png'))
+        image = pygame.image.load(os.path.join('sprites', 'cook_left.png'))
         self.left_image = pygame.transform.scale(image,
                                                  (int(image.get_width() * self.scale),
                                                   int(image.get_height() * self.scale)))
 
-        image = pygame.image.load(os.path.join('sprites', 'player_right.png'))
+        image = pygame.image.load(os.path.join('sprites', 'cook_right.png'))
         self.right_image = pygame.transform.scale(image,
                                                   (int(image.get_width() * self.scale),
                                                    int(image.get_height() * self.scale)))
         self.image = self.down_image
         self.collision_fudge = self.image.get_width() * 0.25
         self.collision = False
+
+        self.paths = []
+        self.current_path = 0
+        self.current_path_distance = 0
+        self.move_speed = Cook.base_move_speed
 
         self.current_tile = {
             'x': start_x,
@@ -45,7 +50,6 @@ class Cook(object):
             'y': 0
         }
 
-
         self.moving_up = False
         self.moving_down = False
         self.moving_left = False
@@ -55,22 +59,71 @@ class Cook(object):
         self.ingredient_1 = None
         self.ingredient_2 = None
 
+    def add_path(self, direction, tiles, speed, wait_after):
+        self.paths.append({
+            'direction': direction,
+            'distance': tiles,
+            'speed': speed,
+            'wait_after': wait_after,
+        })
+
     def update(self):
+        current_tile = dict(self.current_tile)
+
         if self.moving_up:
-            self.pos_in_tile['y'] -= Cook.move_speed
+            self.pos_in_tile['y'] -= self.move_speed
             self.image = self.up_image
         if self.moving_down:
-            self.pos_in_tile['y'] += Cook.move_speed
+            self.pos_in_tile['y'] += self.move_speed
             self.image = self.down_image
 
         if self.moving_left:
-            self.pos_in_tile['x'] -= Cook.move_speed
+            self.pos_in_tile['x'] -= self.move_speed
             self.image = self.left_image
         if self.moving_right:
-            self.pos_in_tile['x'] += Cook.move_speed
+            self.pos_in_tile['x'] += self.move_speed
             self.image = self.right_image
 
+        ###
+
+        if self.pos_in_tile['x'] > Tile.size_px - self.collision_fudge:
+            if self.kitchen.is_walkable(self.current_tile['x'] + 1, self.current_tile['y']):
+                if self.pos_in_tile['x'] > Tile.size_px:
+                    self.pos_in_tile['x'] -= Tile.size_px
+                    self.current_tile['x'] += 1
+            else:
+                self.pos_in_tile['x'] = Tile.size_px - self.collision_fudge
+        if self.pos_in_tile['x'] < 0 + self.collision_fudge:
+            if self.kitchen.is_walkable(self.current_tile['x'] - 1, self.current_tile['y']):
+                if self.pos_in_tile['x'] < 0:
+                    self.pos_in_tile['x'] += Tile.size_px
+                    self.current_tile['x'] -= 1
+            else:
+                self.pos_in_tile['x'] = 0 + self.collision_fudge
+
+        if self.pos_in_tile['y'] > Tile.size_px - self.collision_fudge * 1.8:
+            if self.kitchen.is_walkable(self.current_tile['x'], self.current_tile['y'] + 1):
+                if self.pos_in_tile['y']:
+                    self.pos_in_tile['y'] -= Tile.size_px
+                    self.current_tile['y'] += 1
+            else:
+                self.pos_in_tile['y'] = Tile.size_px - self.collision_fudge * 1.8
+        if self.pos_in_tile['y'] < 0 + self.collision_fudge:
+            if self.kitchen.is_walkable(self.current_tile['x'], self.current_tile['y'] - 1):
+                if self.pos_in_tile['y'] < 0:
+                    self.pos_in_tile['y'] += Tile.size_px
+                    self.current_tile['y'] -= 1
+            else:
+                self.pos_in_tile['y'] = 0 + self.collision_fudge
+
+        if self.current_tile != current_tile:
+            self.current_path_distance += 1
+            path = self.paths[self.current_path]
+            if self.current_path_distance >= path['distance']:
+                self.go()
+
     def set_direction(self, direction):
+        print('set_drection({})'.format(direction))
         self.direction = direction
 
         self.moving_up = False
@@ -115,4 +168,21 @@ class Cook(object):
         if self.direction == "right":
             if self.ingredient_2:
                 screen.blit(self.ingredient_2.image, (x + 25, y + 50))
+
+    def go(self):
+        print('on path {}'.format(self.current_path))
+        path = self.paths[self.current_path]
+        self.current_path += 1
+        if self.current_path >= len(self.paths):
+            self.current_path = 0
+
+        self.current_path_distance = 0
+        self.set_direction(path['direction'])
+        self.move_speed = path['speed']
+
+        print('changing path')
+        print('now on path {}'.format(self.current_path))
+        print(path['direction'])
+        print()
+
 

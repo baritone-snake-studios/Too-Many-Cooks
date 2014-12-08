@@ -21,10 +21,17 @@ def run_game():
     kitchen.setup_level(1)
 
     player = Player(start_x=2, start_y=2, kitchen=kitchen)
+    player.pos_in_tile = {'x': 50, 'y': 50}
     GlobalVars.register_game_obj(player)
     GlobalVars.player = player
 
-    cooks = [Cook(start_x=0, start_y=1, kitchen=kitchen)]
+    cooks = []
+    cook = Cook(start_x=1, start_y=1, kitchen=kitchen)
+    cooks.append(cook)
+    cook.add_path(direction='down', tiles=1, speed=3, wait_after=50)
+    cook.add_path(direction='up', tiles=2, speed=3, wait_after=200)
+    cook.go()
+
     GlobalVars.register_game_obj(cooks[0])
     cooks[0].pos_in_tile = {'x': 50, 'y': 50}
 
@@ -102,6 +109,7 @@ def run_game():
 
         kitchen.render(screen=DISPLAY_SURFACE)
         for cook in cooks:
+            cook.update()
             cook.render(screen=DISPLAY_SURFACE)
         player.render(screen=DISPLAY_SURFACE)
 

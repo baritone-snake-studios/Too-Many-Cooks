@@ -132,9 +132,9 @@ class Player(object):
         y -= self.image.get_height() / 2
         screen.blit(self.image, (x, y))
 
-        rect = self.image.get_rect()
-        rect = rect.move(Tile.tile_to_pixel(current_tile=self.current_tile))
-        pygame.draw.rect(screen, (255, 50, 255), rect, 3)
+        # rect = self.image.get_rect()
+        # rect = rect.move(Tile.tile_to_pixel(current_tile=self.current_tile))
+        # pygame.draw.rect(screen, (255, 50, 255), rect, 3)
 
         if self.direction == "up":
             if self.ingredient_1:
