@@ -13,9 +13,11 @@ class GlobalVars(object):
     menu = ""
     menu_scale = 4.0 * scale
     player = None
+    level = 1
     score = 0
     render_score = False
     render_count = 0
+    go_to_next_level = False
 
     @classmethod
     def register_game_obj(cls, obj):
@@ -116,4 +118,22 @@ class GlobalVars(object):
             except HandsFullError:
                 print("my hands are full")
                 GlobalVars.show_menu('Full Hands')
+
+    @classmethod
+    def check_level_upgrade(cls):
+        if cls.level == 1:
+            if cls.score >= 30:
+                cls.level = 2
+                cls.go_to_next_level = True
+
+        if cls.level == 2:
+            if cls.score >= 50:
+                cls.level = 3
+                cls.go_to_next_level = True
+
+        if cls.level == 3:
+            if cls.score >= 70:
+                cls.level = 4
+                cls.go_to_next_level = True
+
 

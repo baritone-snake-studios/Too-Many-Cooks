@@ -142,7 +142,7 @@ class Kitchen(object):
         self.appliances.append(choppingblock)
 
         fridge = Storage(5, 0, type="fridge", allowed_directions=['up'])
-        self.make_tile_collidable(5, 0)
+        self.make_tile_collidable(4, 0)
         self.tiles[5][0].appliance = fridge
         self.appliances.append(fridge)
 
@@ -258,3 +258,6 @@ class Kitchen(object):
         self.make_tile_collidable(3,3)
         self.tiles[3][3].appliance = dessertfreezer
         self.appliances.append(dessertfreezer)
+
+    def clear_kitchen(self, and_the_kitchen_sink):
+        pass

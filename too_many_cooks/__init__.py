@@ -88,6 +88,21 @@ def run_game():
         pygame.display.update()
         FpsClock.tick(FPS)
 
+        if GlobalVars.go_to_next_level:
+            GlobalVars.go_to_next_level = False
+            del kitchen
+
+            if GlobalVars.level == 2:
+                kitchen = Kitchen(5, 3)
+                kitchen.setup_level_two()
+
+            if GlobalVars.level == 3:
+                kitchen = Kitchen(6, 4)
+                kitchen.setup_level_three()
+
+            if GlobalVars.level == 4:
+                kitchen = Kitchen(7, 5)
+                kitchen.setup_level_four()
 
 def get_window_size():
     return 800, 600  # TODO

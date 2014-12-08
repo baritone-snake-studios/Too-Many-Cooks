@@ -22,6 +22,7 @@ class Recipe(object):
 
         GlobalVars.score += cls.score
         GlobalVars.render_score = True
+        GlobalVars.check_level_upgrade()
         return [item for item in ingredients if item.name not in cls.required_ingredients_names]
 
 
