@@ -145,7 +145,7 @@ class Kitchen(object):
         self.make_tile_collidable(0, 2)
         self.tiles[0][2].appliance = fridge
         self.appliances.append(fridge)
-        fridge.contents = [ingredients['Tomato'], ingredients['Lettuce']]
+        fridge.contents = [ingredients['Tomato'], ingredients['Lettuce'], ingredients['Cheese']]
         # move fridge after second level
 
         freezer = Storage(4, 0, type="freezer")
@@ -201,13 +201,13 @@ class Kitchen(object):
         self.make_tile_collidable(0, 2)
         self.tiles[0][2].appliance = fridge
         self.appliances.append(fridge)
-        fridge.contents = [ingredients['Tomato'], ingredients['Lettuce']]
+        fridge.contents = [ingredients['Tomato'], ingredients['Lettuce'], ingredients['Cheese']]
 
         freezer = Storage(5, 0, type="freezer")
         self.make_tile_collidable(5, 0)
         self.tiles[5][0].appliance = freezer
         self.appliances.append(freezer)
-        freezer.contents = [ingredients['Beef Patty']]
+        freezer.contents = [ingredients['Beef Patty'], ingredients['Chicken']]
 
         barrel = Storage(5, 3, type="barrel")
         self.make_tile_collidable(5, 3)
@@ -247,22 +247,22 @@ class Kitchen(object):
         self.tiles[2][2].appliance = choppingblock
         self.appliances.append(choppingblock)
 
-        oven = Oven(0, 0)
-        self.make_tile_collidable(1, 0)
-        self.tiles[1][0].appliance = oven
-        self.appliances.append(oven)
+        # oven = Oven(1, 0)
+        # self.make_tile_collidable(1, 0)
+        # self.tiles[1][0].appliance = oven
+        # self.appliances.append(oven)
 
         fridge = Storage(5, 0, type="fridge")
         self.make_tile_collidable(5, 0)
         self.tiles[5][0].appliance = fridge
         self.appliances.append(fridge)
-        fridge.contents = [ingredients['Tomato'], ingredients['Lettuce']]
+        fridge.contents = [ingredients['Tomato'], ingredients['Lettuce'], ingredients['Cheese']]
 
         freezer = Storage(4, 0, type="freezer")
         self.make_tile_collidable(4, 0)
         self.tiles[4][0].appliance = freezer
         self.appliances.append(freezer)
-        freezer.contents = [ingredients['Beef Patty']]
+        freezer.contents = [ingredients['Beef Patty'],ingredients['Chicken']]
 
         barrel = Storage(4, 3, type="barrel")
         self.make_tile_collidable(4, 3)
@@ -276,10 +276,10 @@ class Kitchen(object):
         self.appliances.append(pantry)
         pantry.contents = [ingredients['Burger Buns']]
 
-        dessertfreezer = Storage(3, 3, type= "dessertfreezer")
-        self.make_tile_collidable(3,3)
-        self.tiles[3][3].appliance = dessertfreezer
-        self.appliances.append(dessertfreezer)
+        # Chicken = Storage(3, 3, type= "dessertfreezer")
+        # self.make_tile_collidable(3,3)
+        # self.tiles[3][3].appliance = dessertfreezer
+        # self.appliances.append(dessertfreezer)
 
     def clear_kitchen(self, and_the_kitchen_sink):
         pass

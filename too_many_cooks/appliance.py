@@ -108,6 +108,8 @@ class Oven(Appliance):
         ingr_1, ingr_2 = user.get_ingredients()
 
 
+
+
 class CounterTop(Appliance):
     def __init__(self, start_x, start_y):
         image_path = (os.path.join('sprites', 'countertop.png'))
@@ -152,6 +154,7 @@ class Stove(Appliance):
     def use(self, user):
         ingr_1, ingr_2 = user.get_ingredients()
         self.recieve_ingredients(user, ['Tomato', 'Chicken', 'Noodles'])
+        GlobalVars.player.get_ingredient(ingredient.cooked_chicken)
 
 
 

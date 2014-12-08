@@ -28,11 +28,21 @@ class Recipe(object):
 
 class BurgerRecipe(Recipe):
     required_ingredients_names = ['Cooked Patty', 'Burger Buns', 'Lettuce', 'Tomato']
-    score = 20
+    score = 25
+    pass
+
+class CheeseBurgerRecipe(Recipe):
+    required_ingredients_names = ['Cooked Patty', 'Burger Buns', 'Lettuce', 'Tomato', 'Cheese']
+    score = 35
     pass
 
 
 class FryRecipe(Recipe):
     required_ingredients_names = ['Fries']
     score = 5
+    pass
+
+class ChickenRecipe(Recipe):
+    required_ingredients_names = ['Cooked Chicken', 'Burger Buns', 'Lettuce', 'Tomato']
+    score = 25
     pass
