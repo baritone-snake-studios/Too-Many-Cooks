@@ -197,14 +197,14 @@ class Kitchen(object):
         self.tiles[3][2].appliance = choppingblock
         self.appliances.append(choppingblock)
 
-        fridge = Storage(0, 3, type="fridge", allowed_directions=['up'])
-        self.make_tile_collidable(0, 3)
-        self.tiles[0][3].appliance = fridge
+        fridge = Storage(0, 2, type="fridge", allowed_directions=['up'])
+        self.make_tile_collidable(0, 2)
+        self.tiles[0][2].appliance = fridge
         self.appliances.append(fridge)
 
-        freezer = Storage(4, 0, type="freezer")
-        self.make_tile_collidable(4, 0)
-        self.tiles[4][0].appliance = freezer
+        freezer = Storage(5, 0, type="freezer")
+        self.make_tile_collidable(5, 0)
+        self.tiles[5][0].appliance = freezer
         self.appliances.append(freezer)
 
         barrel = Storage(5, 3, type="barrel")
