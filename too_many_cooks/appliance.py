@@ -1,6 +1,7 @@
 import os
 
 import pygame
+import random
 from too_many_cooks import ingredient
 
 from too_many_cooks.errors import CantGetItem, NoIngredientError
@@ -126,9 +127,18 @@ class CounterTop(Appliance):
     def render(self, screen):
         super().render(screen)
         x, y = Tile.tile_to_pixel(current_tile=self.current_tile)
-        for ingredient in self.contents:
-            screen.blit(ingredient.image,(x,y))
 
+        i = 0
+        for ingredient in self.contents:
+            offset_x, offset_y = self.item_offset(i)
+            i += 1
+            screen.blit(ingredient.image, (x + offset_x, y + offset_y))
+
+    def item_offset(self, i):
+        random.seed(i * 2)
+        x = random.randint(0, 50)
+        y = random.randint(-5, 30)
+        return x, y
 
 
 class Stove(Appliance):

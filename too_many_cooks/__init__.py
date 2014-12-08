@@ -66,8 +66,6 @@ def run_game():
                     else:
                         GlobalVars.show_menu("")
 
-
-
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_UP:
                     player.moving_up = False
