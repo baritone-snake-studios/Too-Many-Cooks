@@ -25,7 +25,7 @@ def run_game():
     GlobalVars.register_game_obj(player)
     GlobalVars.player = player
 
-    cooks = []
+    game_cooks = []
 
     GlobalVars.load_menu()
 
@@ -85,7 +85,7 @@ def run_game():
         player.update()
 
         cook_collision = False
-        for cook in cooks:
+        for cook in game_cooks:
             cook.update()
             if player.current_tile == cook.current_tile:
                 cook.collision = True
@@ -100,7 +100,7 @@ def run_game():
         DISPLAY_SURFACE.fill((155, 180, 200))
 
         kitchen.render(screen=DISPLAY_SURFACE)
-        for cook in cooks:
+        for cook in game_cooks:
             cook.render(screen=DISPLAY_SURFACE)
         player.render(screen=DISPLAY_SURFACE)
 
@@ -118,15 +118,19 @@ def run_game():
                 kitchen.setup_level_two()
                 player.kitchen = kitchen
 
-                GlobalVars.deregister(cooks)
+                GlobalVars.deregister(game_cooks)
+                game_cooks = []
+
                 cook = Cook(start_x=1, start_y=1, kitchen=kitchen)
-                cooks.append(cook)
+                cook.pos_in_tile = {'x': 50, 'y': 50}
                 cook.add_path(direction='down', tiles=3, speed=2, wait_after=50)
                 cook.add_path(direction='up', tiles=3, speed=2, wait_after=200)
                 cook.go()
+                game_cooks.append(cook)
 
-                GlobalVars.register_game_obj(cooks[0])
-                cooks[0].pos_in_tile = {'x': 50, 'y': 50}
+                for cook in game_cooks:
+                    GlobalVars.register_game_obj(cook)
+
 
             if GlobalVars.level == 3:
                 GlobalVars.deregister([kitchen])
@@ -134,14 +138,15 @@ def run_game():
                 kitchen.setup_level_three()
                 player.kitchen = kitchen
 
-                GlobalVars.deregister(cooks)
+                GlobalVars.deregister(game_cooks)
 
             if GlobalVars.level == 4:
                 GlobalVars.deregister([kitchen])
-                kitchen = Kitchen(7, 5)
+                kitchen = Kitchen(6, 4)
                 kitchen.setup_level_four()
+                player.kitchen = kitchen
 
-                GlobalVars.deregister(cooks)
+                GlobalVars.deregister(game_cooks)
 
 def get_window_size():
     return 800, 600  # TODO
