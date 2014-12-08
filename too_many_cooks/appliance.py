@@ -113,15 +113,18 @@ class CounterTop(Appliance):
         if self.recieve_ingredients(user, ['Cooked Patty', 'Burger Buns', 'Lettuce', 'Tomato', 'Fries'], keep_ingredients=True):
             try:
                 self.contents = BurgerRecipe.make(self.contents)
-                print("Made a burger")
+                print("Made a burger. Current Score: {}".format(GlobalVars.score))
             except CantMakeRecipeError:
                 pass
 
             try:
                 self.contents = FryRecipe.make(self.contents)
-                print("Made french fries")
+                print("Made french fries. Current Score: {}".format(GlobalVars.score))
             except CantMakeRecipeError:
                 pass
+
+    def render(self, screen):
+        super().render(screen)
 
 
 class Stove(Appliance):

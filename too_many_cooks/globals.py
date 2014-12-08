@@ -12,6 +12,7 @@ class GlobalVars(object):
     menu = ""
     menu_scale = 4.0 * scale
     player = None
+    score = 0
 
     @classmethod
     def register_game_obj(cls, obj):
