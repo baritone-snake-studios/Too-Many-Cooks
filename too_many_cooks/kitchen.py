@@ -130,8 +130,8 @@ class Kitchen(object):
         self.appliances.append(fryer)
 
         countertop = CounterTop(3, 0)
-        self.make_tile_collidable(1, 0)
-        self.tiles[1][0].appliance = countertop
+        self.make_tile_collidable(3, 0)
+        self.tiles[3][0].appliance = countertop
         self.appliances.append(countertop)
 
         choppingblock = ChoppingBlock(1, 0)
@@ -171,8 +171,8 @@ class Kitchen(object):
         self.appliances.append(fryer)
 
         countertop = CounterTop(3, 0)
-        self.make_tile_collidable(1, 0)
-        self.tiles[1][0].appliance = countertop
+        self.make_tile_collidable(3, 0)
+        self.tiles[3][0].appliance = countertop
         self.appliances.append(countertop)
 
         choppingblock = ChoppingBlock(1, 0)
@@ -205,8 +205,8 @@ class Kitchen(object):
         self.tiles[3][3].appliance = dessertfreezer
         self.appliances.append(dessertfreezer)
 
-        def setup_level_four(self):
-            stove = Stove(2, 0)
+    def setup_level_four(self):
+        stove = Stove(2, 0)
         self.make_tile_collidable(2, 0)
         self.tiles[2][0].appliance = stove
         self.appliances.append(stove)
@@ -217,8 +217,8 @@ class Kitchen(object):
         self.appliances.append(fryer)
 
         countertop = CounterTop(3, 0)
-        self.make_tile_collidable(1, 0)
-        self.tiles[1][0].appliance = countertop
+        self.make_tile_collidable(3, 0)
+        self.tiles[3][0].appliance = countertop
         self.appliances.append(countertop)
 
         choppingblock = ChoppingBlock(2, 2)
