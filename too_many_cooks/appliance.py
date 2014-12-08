@@ -5,6 +5,7 @@ from too_many_cooks import ingredient
 
 from too_many_cooks.errors import CantGetItem, NoIngredientError
 from too_many_cooks.globals import GlobalVars
+from too_many_cooks.recipe import BurgerRecipe
 from too_many_cooks.tile import Tile
 
 
@@ -110,6 +111,8 @@ class CounterTop(Appliance):
 
     def use(self, user):
         if self.recieve_ingredients(user, ['Cooked Patty', 'Burger Buns', 'Lettuce', 'Tomato']):
+            if BurgerRecipe.can_make(self.contents):
+                print ("Made a burger")
 
 
 
