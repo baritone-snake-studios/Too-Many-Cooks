@@ -23,7 +23,7 @@ burger_bun = Ingredient('Burger Buns', os.path.join('sprites', 'burger_bun.png')
 Potato = Ingredient('Potato', os.path.join('sprites', 'potato.png'))
 lettuce = Ingredient('Lettuce', os.path.join('sprites', 'lettuce.png'))
 tomato = Ingredient('Tomato', os.path.join('sprites', 'tomato.png'))
-fries = Ingredient('French Fries', os.path.join('sprites', 'fries.png'))
+fries = Ingredient('Fries', os.path.join('sprites', 'fries.png'))
 cooked_beef_patty = Ingredient('Cooked Patty', os.path.join('sprites','cooked_beef_patty.png'))
 
 ingredients = {
@@ -32,6 +32,6 @@ ingredients = {
     'Potato': Potato,
     'Lettuce': lettuce,
     'Tomato': tomato,
-    'French Fries' : fries,
+    'Fries' : fries,
     'Cooked Patty' : cooked_beef_patty,
 }

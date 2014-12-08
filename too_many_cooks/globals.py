@@ -31,7 +31,7 @@ class GlobalVars(object):
 
     @classmethod
     def show_menu(cls, menu_type, contents=None):
-        print('setting menu: {}'.format(menu_type))
+        # print('setting menu: {}'.format(menu_type))
         GlobalVars.contents = contents
         GlobalVars.menu = menu_type
 

@@ -5,7 +5,7 @@ from too_many_cooks import ingredient
 
 from too_many_cooks.errors import CantGetItem, NoIngredientError
 from too_many_cooks.globals import GlobalVars
-from too_many_cooks.recipe import BurgerRecipe
+from too_many_cooks.recipe import BurgerRecipe, CantMakeRecipeError, FryRecipe
 from too_many_cooks.tile import Tile
 
 
@@ -110,10 +110,18 @@ class CounterTop(Appliance):
         super().__init__(image_path, start_x, start_y)
 
     def use(self, user):
-        if self.recieve_ingredients(user, ['Cooked Patty', 'Burger Buns', 'Lettuce', 'Tomato']):
-            if BurgerRecipe.can_make(self.contents):
-                print ("Made a burger")
+        if self.recieve_ingredients(user, ['Cooked Patty', 'Burger Buns', 'Lettuce', 'Tomato', 'Fries'], keep_ingredients=True):
+            try:
+                self.contents = BurgerRecipe.make(self.contents)
+                print("Made a burger")
+            except CantMakeRecipeError:
+                pass
 
+            try:
+                self.contents = FryRecipe.make(self.contents)
+                print("Made french fries")
+            except CantMakeRecipeError:
+                pass
 
 
 class Stove(Appliance):
