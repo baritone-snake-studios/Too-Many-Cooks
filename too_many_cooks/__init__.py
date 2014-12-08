@@ -1,5 +1,6 @@
 import pygame
 import sys
+from too_many_cooks.cooks import Cook
 from too_many_cooks.globals import GlobalVars
 from too_many_cooks.kitchen import Kitchen
 from too_many_cooks.player import Player
@@ -22,6 +23,10 @@ def run_game():
     player = Player(start_x=2, start_y=2, kitchen=kitchen)
     GlobalVars.register_game_obj(player)
     GlobalVars.player = player
+
+    cooks = [Cook(start_x=1, start_y=1, kitchen=kitchen)]
+    GlobalVars.register_game_obj(cooks[0])
+    cooks[0].pos_in_tile = {'x': 50, 'y': 50}
 
     GlobalVars.load_menu()
 
@@ -76,11 +81,29 @@ def run_game():
                 if event.key == pygame.K_RIGHT:
                     player.moving_right = False
 
+        player_old_tile = dict(player.current_tile)
+        player_old_pos_in_tile = dict(player.pos_in_tile)
         player.update()
+
+        cook_collision = False
+        for cook in cooks:
+            if player.current_tile == cook.current_tile:
+                cook.collision = True
+                cook_collision = True
+            else:
+                cook.collision = False
+
+        if cook_collision:
+            print('collision')
+            player.current_tile = player_old_tile
+            player.pos_in_tile = player_old_pos_in_tile
+
 
         DISPLAY_SURFACE.fill((155, 180, 200))
 
         kitchen.render(screen=DISPLAY_SURFACE)
+        for cook in cooks:
+            cook.render(screen=DISPLAY_SURFACE)
         player.render(screen=DISPLAY_SURFACE)
 
         GlobalVars.render(screen=DISPLAY_SURFACE)
@@ -93,11 +116,11 @@ def run_game():
             del kitchen
 
             if GlobalVars.level == 2:
-                kitchen = Kitchen(5, 3)
+                kitchen = Kitchen(4, 3)
                 kitchen.setup_level_two()
 
             if GlobalVars.level == 3:
-                kitchen = Kitchen(6, 4)
+                kitchen = Kitchen(5, 3)
                 kitchen.setup_level_three()
 
             if GlobalVars.level == 4:
