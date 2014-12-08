@@ -89,7 +89,7 @@ class Fryer(Appliance):
 
 class ChoppingBlock(Appliance):
     def __init__(self, start_x, start_y):
-        image_path = (os.path.join('sprites', 'choppingblock.png'))
+        image_path = (os.path.join('sprites', 'chopping_block.png'))
         super().__init__(image_path, start_x, start_y)
 
     def use(self, user):

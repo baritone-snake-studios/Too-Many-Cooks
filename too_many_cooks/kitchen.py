@@ -118,6 +118,8 @@ class Kitchen(object):
         self.appliances.append(pantry)
         pantry.contents = [ingredients['Burger Buns']]
 
+
+
     def setup_level_two(self):
         stove = Stove(2, 0)
         self.make_tile_collidable(2, 0)
@@ -134,9 +136,9 @@ class Kitchen(object):
         self.tiles[3][0].appliance = countertop
         self.appliances.append(countertop)
 
-        choppingblock = ChoppingBlock(1, 0)
-        self.make_tile_collidable(1, 0)
-        self.tiles[1][0].appliance = choppingblock
+        choppingblock = ChoppingBlock(2, 2)
+        self.make_tile_collidable(2, 2)
+        self.tiles[2][2].appliance = choppingblock
         self.appliances.append(choppingblock)
 
         fridge = Storage(5, 0, type="fridge")
@@ -175,10 +177,11 @@ class Kitchen(object):
         self.tiles[3][0].appliance = countertop
         self.appliances.append(countertop)
 
-        choppingblock = ChoppingBlock(1, 0)
-        self.make_tile_collidable(1, 0)
-        self.tiles[1][0].appliance = choppingblock
+        choppingblock = ChoppingBlock(2, 2)
+        self.make_tile_collidable(2, 2)
+        self.tiles[2][2].appliance = choppingblock
         self.appliances.append(choppingblock)
+
 
         fridge = Storage(5, 0, type="fridge")
         self.make_tile_collidable(5, 0)
