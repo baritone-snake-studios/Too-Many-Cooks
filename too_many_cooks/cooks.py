@@ -122,15 +122,11 @@ class Cook(object):
                     self.pos_in_tile['y'] = 0 + self.collision_fudge
 
         if self.current_path_distance != old_path_distance:
-            print()
-            print('current path distance: {}'.format(self.current_path_distance))
             path = self.paths[self.current_path]
-            print('path length {}'.format(path['distance']))
             if self.current_path_distance >= path['distance']:
                 self.next_path()
                 self.current_tile = old_tile
                 self.pos_in_tile = old_pos
-            print()
 
     def set_direction(self, direction):
         print('set_drection({})'.format(direction))
