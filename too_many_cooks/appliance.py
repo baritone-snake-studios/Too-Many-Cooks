@@ -6,7 +6,7 @@ from too_many_cooks import ingredient
 
 from too_many_cooks.errors import CantGetItem, NoIngredientError
 from too_many_cooks.globals import GlobalVars
-from too_many_cooks.recipe import BurgerRecipe, CantMakeRecipeError, FryRecipe
+from too_many_cooks.recipe import BurgerRecipe, CantMakeRecipeError, FryRecipe, ChickenRecipe, CheeseBurgerRecipe
 from too_many_cooks.tile import Tile
 
 
@@ -116,7 +116,13 @@ class CounterTop(Appliance):
         super().__init__(image_path, start_x, start_y)
 
     def use(self, user):
-        if self.recieve_ingredients(user, ['Cooked Patty', 'Burger Buns', 'Lettuce', 'Tomato', 'Fries'], keep_ingredients=True):
+        if self.recieve_ingredients(user, ['Cheese', 'Cooked Chicken','Cooked Patty', 'Burger Buns', 'Lettuce', 'Tomato', 'Fries'], keep_ingredients=True):
+            try:
+                self.contents = CheeseBurgerRecipe.make(self.contents)
+                print("Made a cheese burger. Current Score: {}".format(GlobalVars.score))
+            except CantMakeRecipeError:
+                pass
+
             try:
                 self.contents = BurgerRecipe.make(self.contents)
                 print("Made a burger. Current Score: {}".format(GlobalVars.score))
@@ -126,6 +132,11 @@ class CounterTop(Appliance):
             try:
                 self.contents = FryRecipe.make(self.contents)
                 print("Made french fries. Current Score: {}".format(GlobalVars.score))
+            except CantMakeRecipeError:
+                pass
+            try:
+                self.contents =  ChickenRecipe.make(self.contents)
+                print("Made chicken sandwich. Current Score: {}".format(GlobalVars.score))
             except CantMakeRecipeError:
                 pass
 
@@ -152,9 +163,8 @@ class Stove(Appliance):
         super().__init__(image_path, start_x, start_y)
 
     def use(self, user):
-        ingr_1, ingr_2 = user.get_ingredients()
-        self.recieve_ingredients(user, ['Tomato', 'Chicken', 'Noodles'])
-        GlobalVars.player.get_ingredient(ingredient.cooked_chicken)
+        if self.recieve_ingredients(user, ['Tomato', 'Chicken', 'Noodles']):
+            GlobalVars.player.get_ingredient(ingredient.cooked_chicken)
 
 
 

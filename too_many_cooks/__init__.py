@@ -128,7 +128,7 @@ def run_game():
                 player.kitchen = kitchen
 
                 GlobalVars.deregister(cooks)
-                cooks = [Cook(start_x=1, start_y=1, kitchen=kitchen)]
+                cooks = [Cook(start_x=1, start_y=2, kitchen=kitchen)]
                 GlobalVars.register_game_obj(cooks[0])
                 cooks[0].pos_in_tile = {'x': 50, 'y': 50}
 
@@ -142,8 +142,9 @@ def run_game():
 
             if GlobalVars.level == 4:
                 GlobalVars.deregister([kitchen])
-                kitchen = Kitchen(7, 5)
+                kitchen = Kitchen(6, 4)
                 kitchen.setup_level_four()
+                player.kitchen = kitchen
 
                 GlobalVars.deregister(cooks)
 

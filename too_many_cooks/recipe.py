@@ -32,7 +32,7 @@ class BurgerRecipe(Recipe):
     pass
 
 class CheeseBurgerRecipe(Recipe):
-    required_ingredients_names = ['Cooked Patty', 'Burger Buns', 'Lettuce', 'Tomato', 'Cheese']
+    required_ingredients_names = ['Cheese','Cooked Patty', 'Burger Buns', 'Lettuce', 'Tomato']
     score = 35
     pass
 
