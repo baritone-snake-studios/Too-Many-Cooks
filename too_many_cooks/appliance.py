@@ -109,7 +109,8 @@ class CounterTop(Appliance):
         super().__init__(image_path, start_x, start_y)
 
     def use(self, user):
-        ingr_1, ingr_2 = user.get_ingredients()
+        if self.recieve_ingredients(user, ['Cooked Patty', 'Burger Buns', 'Lettuce', 'Tomato']):
+
 
 
 class Stove(Appliance):
