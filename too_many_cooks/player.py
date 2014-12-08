@@ -90,7 +90,7 @@ class Player(object):
 
         if self.pos_in_tile['y'] > Tile.size_px - self.collision_fudge * 1.8:
             if self.kitchen.is_walkable(self.current_tile['x'], self.current_tile['y']+1):
-                if self.pos_in_tile['y']:
+                if self.pos_in_tile['y'] > Tile.size_px:
                     self.pos_in_tile['y'] -= Tile.size_px
                     self.current_tile['y'] += 1
             else:

@@ -26,14 +26,6 @@ def run_game():
     GlobalVars.player = player
 
     cooks = []
-    cook = Cook(start_x=1, start_y=1, kitchen=kitchen)
-    cooks.append(cook)
-    cook.add_path(direction='down', tiles=1, speed=3, wait_after=50)
-    cook.add_path(direction='up', tiles=2, speed=3, wait_after=200)
-    cook.go()
-
-    GlobalVars.register_game_obj(cooks[0])
-    cooks[0].pos_in_tile = {'x': 50, 'y': 50}
 
     GlobalVars.load_menu()
 
@@ -94,6 +86,7 @@ def run_game():
 
         cook_collision = False
         for cook in cooks:
+            cook.update()
             if player.current_tile == cook.current_tile:
                 cook.collision = True
                 cook_collision = True
@@ -104,12 +97,10 @@ def run_game():
             player.current_tile = player_old_tile
             player.pos_in_tile = player_old_pos_in_tile
 
-
         DISPLAY_SURFACE.fill((155, 180, 200))
 
         kitchen.render(screen=DISPLAY_SURFACE)
         for cook in cooks:
-            cook.update()
             cook.render(screen=DISPLAY_SURFACE)
         player.render(screen=DISPLAY_SURFACE)
 
@@ -128,7 +119,12 @@ def run_game():
                 player.kitchen = kitchen
 
                 GlobalVars.deregister(cooks)
-                cooks = [Cook(start_x=1, start_y=1, kitchen=kitchen)]
+                cook = Cook(start_x=1, start_y=1, kitchen=kitchen)
+                cooks.append(cook)
+                cook.add_path(direction='down', tiles=3, speed=2, wait_after=50)
+                cook.add_path(direction='up', tiles=3, speed=2, wait_after=200)
+                cook.go()
+
                 GlobalVars.register_game_obj(cooks[0])
                 cooks[0].pos_in_tile = {'x': 50, 'y': 50}
 
