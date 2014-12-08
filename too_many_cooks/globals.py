@@ -1,6 +1,7 @@
 import os
 import pygame
 from too_many_cooks.errors import HandsFullError
+from too_many_cooks.tile import Tile
 
 
 class GlobalVars(object):
@@ -13,6 +14,8 @@ class GlobalVars(object):
     menu_scale = 4.0 * scale
     player = None
     score = 0
+    render_score = False
+    render_count = 0
 
     @classmethod
     def register_game_obj(cls, obj):
@@ -86,6 +89,15 @@ class GlobalVars(object):
             if len(GlobalVars.contents) >= 4:
                 screen.blit(GlobalVars.contents[3].image,
                             (menu_start_x + menu_offset_x, menu_start_y + menu_offset_y))
+
+        if cls.render:
+            
+            myfont = pygame.font.SysFont("system", 60)
+            label = myfont.render(str(cls.score), 1, (240, 215, 20))
+            x, y = Tile.tile_to_pixel(current_tile=cls.player.current_tile, pos_in_tile=cls.player.pos_in_tile)
+            x -= 10
+            y -= 90
+            screen.blit(label, (x, y))
 
     @classmethod
     def send_message(cls, option):
