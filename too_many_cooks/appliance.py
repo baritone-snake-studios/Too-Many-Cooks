@@ -43,6 +43,9 @@ class Appliance(object):
         if not recieved_ingredients:
             print("You're not holding any {}".format(' or '.join(ingredients)))
             GlobalVars.show_menu('No Ingredient')
+            return False
+        else:
+            return True
 
 
 class Storage(Appliance):
@@ -72,7 +75,11 @@ class Fryer(Appliance):
         super().__init__(image_path, start_x, start_y)
 
     def use(self, user):
-        self.recieve_ingredients(user, ['Potato'])
+        if self.recieve_ingredients(user, ['Potato']):
+            GlobalVars.player.get_ingredient(GlobalVars.contents[option])
+
+
+
 
 
 class ChoppingBlock(Appliance):

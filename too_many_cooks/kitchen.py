@@ -98,7 +98,7 @@ class Kitchen(object):
         self.tiles[0][2].appliance = fridge
         self.appliances.append(fridge)
         fridge.contents = [ingredients['Tomato'], ingredients['Lettuce']]
-        # move fridge after first level
+        # move fridge after second level
 
         freezer = Storage(4, 0, type="freezer")
         self.make_tile_collidable(4, 0)

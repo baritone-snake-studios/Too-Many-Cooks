@@ -91,7 +91,7 @@ class GlobalVars(object):
         if GlobalVars.menu == 'Show Ingredients':
             try:
                 option -= 1  # Because we count from 0
-                GlobalVars.player.get_ingredient(GlobalVars.contents[option])
+                GlobalVars.player.get_ingredient(ingredient.fries)
                 GlobalVars.show_menu('')
             except IndexError:
                 pass
