@@ -78,7 +78,7 @@ class Cook(object):
         if self.moving_down:
             self.pos_in_tile['y'] += self.move_speed
             self.image = self.down_image
-            if self.pos_in_tile['y'] > Tile.size_px:
+            if self.pos_in_tile['y'] >= Tile.size_px:
                 self.pos_in_tile['y'] -= Tile.size_px
                 self.current_tile['y'] += 1
 
@@ -92,7 +92,7 @@ class Cook(object):
         if self.moving_right:
             self.pos_in_tile['x'] += self.move_speed
             self.image = self.right_image
-            if self.pos_in_tile['x'] > Tile.size_px:
+            if self.pos_in_tile['x'] >= Tile.size_px:
                 self.pos_in_tile['x'] -= Tile.size_px
                 self.current_tile['x'] += 1
 
@@ -121,14 +121,14 @@ class Cook(object):
         y -= self.image.get_height() - 50
         screen.blit(self.image, (x, y))
         # TEST
-        if self.collision:
-            rect = self.image.get_rect()
-            rect = rect.move(Tile.tile_to_pixel(current_tile=self.current_tile))
-            pygame.draw.rect(screen, (255, 50, 255), rect, 3)
+        # if self.collision:
+        #     rect = self.image.get_rect()
+        #     rect = rect.move(Tile.tile_to_pixel(current_tile=self.current_tile))
+        #     pygame.draw.rect(screen, (255, 50, 255), rect, 3)
 
-        rect = self.image.get_rect()
-        rect = rect.move(Tile.tile_to_pixel(current_tile=self.current_tile))
-        pygame.draw.rect(screen, (255, 50, 255), rect, 3)
+        # rect = self.image.get_rect()
+        # rect = rect.move(Tile.tile_to_pixel(current_tile=self.current_tile))
+        # pygame.draw.rect(screen, (255, 50, 255), rect, 3)
 
         if self.direction == "up":
             if self.ingredient_1:
