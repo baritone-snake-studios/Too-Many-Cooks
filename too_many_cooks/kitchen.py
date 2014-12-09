@@ -336,15 +336,15 @@ class Kitchen(object):
         self.appliances.append(freezer)
         freezer.contents = [ingredients['Beef Patty'],ingredients['Chicken']]
 
-        barrel = Storage(0, 5, type="barrel")
-        self.make_tile_collidable(0, 5)
-        self.tiles[0][5].appliance = barrel
+        barrel = Storage(0, 4, type="barrel")
+        self.make_tile_collidable(0, 4)
+        self.tiles[0][4].appliance = barrel
         self.appliances.append(barrel)
         barrel.contents = [ingredients['Potato']]
 
-        pantry = Storage(6, 5, type="pantry", allowed_directions=['right'])
-        self.make_tile_collidable(6, 5)
-        self.tiles[6][5].appliance = pantry
+        pantry = Storage(6, 4, type="pantry", allowed_directions=['right'])
+        self.make_tile_collidable(6, 4)
+        self.tiles[6][4].appliance = pantry
         self.appliances.append(pantry)
         pantry.contents = [ingredients['Burger Buns']]
 
