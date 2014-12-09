@@ -120,7 +120,7 @@ class Cook(object):
         x, y = Tile.tile_to_pixel(current_tile=self.current_tile, pos_in_tile=self.pos_in_tile)
         y -= self.image.get_height() - 50
         screen.blit(self.image, (x, y))
-
+        # TEST
         if self.collision:
             rect = self.image.get_rect()
             rect = rect.move(Tile.tile_to_pixel(current_tile=self.current_tile))
