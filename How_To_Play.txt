@@ -1,0 +1,27 @@
+Hi, there! We didn't have enough time to create an
+installer for this, so you'll need to run it yourself :)
+
+In a day or two, we will post a link to a full, no-effort, installer
+on our github, at:
+https://github.com/baritone-snake-studios/Too-Many-Cooks
+
+...But if that hasn't happened yet...
+
+You'll need python3.4
+https://www.python.org/downloads/
+(Click the yellow button that says 'Download Python 3.4.2')
+
+You'll need pygame. If you're on windows, you can get it:
+http://www.lfd.uci.edu/~gohlke/pythonlibs/#pygame
+
+(If your PC is 64-bit, look at the amd64 links, otherwise win32 ,
+then download the one that ends with "-py3.4.exe"
+
+
+Double click game.bat
+(or run the game.py file yourself)
+
+We do apologize for the hassle,
+  :D
+
+  Baritone Snake Studios
