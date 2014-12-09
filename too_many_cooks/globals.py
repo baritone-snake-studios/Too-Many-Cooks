@@ -132,8 +132,13 @@ class GlobalVars(object):
                 cls.go_to_next_level = True
 
         if cls.level == 3:
-            if cls.score >= 60:
+            if cls.score >= 70:
                 cls.level = 4
+                cls.go_to_next_level = True
+
+        if cls.level == 4:
+            if cls.score >= 100:
+                cls.level = 5
                 cls.go_to_next_level = True
 
     @classmethod

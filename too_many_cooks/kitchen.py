@@ -71,6 +71,8 @@ class Kitchen(object):
             self.setup_level_three()
         elif level == 4:
             self.setup_level_four()
+        elif level == 5:
+            self.setup_level_five()
 
     def setup_level_one(self):
         grill = Grill(2, 0)
@@ -203,7 +205,7 @@ class Kitchen(object):
         self.appliances.append(fridge)
         fridge.contents = [ingredients['Tomato'], ingredients['Lettuce'], ingredients['Cheese']]
 
-        freezer = Storage(5, 0, type="freezer")
+        freezer = Storage(5, 0, type="freezer",allowed_directions=['up'])
         self.make_tile_collidable(5, 0)
         self.tiles[5][0].appliance = freezer
         self.appliances.append(freezer)
@@ -215,7 +217,7 @@ class Kitchen(object):
         self.appliances.append(barrel)
         barrel.contents = [ingredients['Potato']]
 
-        pantry = Storage(5, 2, type="pantry")
+        pantry = Storage(5, 2, type="pantry", allowed_directions=['right'])
         self.make_tile_collidable(5, 2)
         self.tiles[5][2].appliance = pantry
         self.appliances.append(pantry)
@@ -257,13 +259,13 @@ class Kitchen(object):
         # self.tiles[1][0].appliance = oven
         # self.appliances.append(oven)
 
-        fridge = Storage(6, 2, type="fridge")
+        fridge = Storage(6, 2, type="fridge", allowed_directions=['up'])
         self.make_tile_collidable(6, 2)
         self.tiles[6][2].appliance = fridge
         self.appliances.append(fridge)
         fridge.contents = [ingredients['Tomato'], ingredients['Lettuce'], ingredients['Cheese']]
 
-        freezer = Storage(6, 0, type="freezer")
+        freezer = Storage(6, 0, type="freezer", allowed_directions=['up'])
         self.make_tile_collidable(6, 0)
         self.tiles[6][0].appliance = freezer
         self.appliances.append(freezer)
@@ -275,9 +277,74 @@ class Kitchen(object):
         self.appliances.append(barrel)
         barrel.contents = [ingredients['Potato']]
 
-        pantry = Storage(6, 4, type="pantry")
+        pantry = Storage(6, 4, type="pantry", allowed_directions=['right'])
         self.make_tile_collidable(6, 4)
         self.tiles[6][4].appliance = pantry
+        self.appliances.append(pantry)
+        pantry.contents = [ingredients['Burger Buns']]
+
+        # Chicken = Storage(3, 3, type= "dessertfreezer")
+        # self.make_tile_collidable(3,3)
+        # self.tiles[3][3].appliance = dessertfreezer
+        # self.appliances.append(dessertfreezer)
+
+    def setup_level_five(self):
+        grill = Grill(0, 0)
+        self.make_tile_collidable(0, 0)
+        self.tiles[0][0].appliance = grill
+        self.appliances.append(grill)
+
+        stove = Stove(2, 0)
+        self.make_tile_collidable(2, 0)
+        self.tiles[2][0].appliance = stove
+        self.appliances.append(stove)
+
+        fryer = Fryer(1, 0)
+        self.make_tile_collidable(1, 0)
+        self.tiles[1][0].appliance = fryer
+        self.appliances.append(fryer)
+
+        countertop = CounterTop(4, 2)
+        self.make_tile_collidable(4, 2)
+        self.tiles[4][2].appliance = countertop
+        self.appliances.append(countertop)
+
+        choppingblock = ChoppingBlock(2, 2)
+        self.make_tile_collidable(2, 2)
+        self.tiles[2][2].appliance = choppingblock
+        self.appliances.append(choppingblock)
+
+        choppingblock = ChoppingBlock(4, 1)
+        self.make_tile_collidable(4, 1)
+        self.tiles[4][1].appliance = choppingblock
+        self.appliances.append(choppingblock)
+
+        # oven = Oven(1, 0)
+        # self.make_tile_collidable(1, 0)
+        # self.tiles[1][0].appliance = oven
+        # self.appliances.append(oven)
+
+        fridge = Storage(6, 2, type="fridge", allowed_directions=['up'])
+        self.make_tile_collidable(6, 2)
+        self.tiles[6][2].appliance = fridge
+        self.appliances.append(fridge)
+        fridge.contents = [ingredients['Tomato'], ingredients['Lettuce'], ingredients['Cheese']]
+
+        freezer = Storage(6, 0, type="freezer", allowed_directions=['up'])
+        self.make_tile_collidable(6, 0)
+        self.tiles[6][0].appliance = freezer
+        self.appliances.append(freezer)
+        freezer.contents = [ingredients['Beef Patty'],ingredients['Chicken']]
+
+        barrel = Storage(0, 5, type="barrel")
+        self.make_tile_collidable(0, 5)
+        self.tiles[0][5].appliance = barrel
+        self.appliances.append(barrel)
+        barrel.contents = [ingredients['Potato']]
+
+        pantry = Storage(6, 5, type="pantry", allowed_directions=['right'])
+        self.make_tile_collidable(6, 5)
+        self.tiles[6][5].appliance = pantry
         self.appliances.append(pantry)
         pantry.contents = [ingredients['Burger Buns']]
 
