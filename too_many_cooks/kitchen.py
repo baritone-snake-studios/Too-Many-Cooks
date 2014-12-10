@@ -8,7 +8,7 @@ from too_many_cooks.tile import Tile
 
 class Kitchen(object):
     def __init__(self, width, height):
-        super().__init__()
+        super(Kitchen, self).__init__()
 
         self.base_floor_image = pygame.image.load(os.path.join('sprites', 'floor.png'))
         self.tile_scale = GlobalVars.scale * Tile.scale

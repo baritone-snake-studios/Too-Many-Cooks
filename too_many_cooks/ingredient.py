@@ -6,7 +6,7 @@ from too_many_cooks import GlobalVars
 class Ingredient(object):
     menu_scale = 0.5
     def __init__(self, name, image_path):
-        super().__init__()
+        super(Ingredient, self).__init__()
         self.name = name
         self.image = pygame.image.load(image_path)
         size = self.image.get_width()

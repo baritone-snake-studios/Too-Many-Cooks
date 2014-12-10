@@ -12,7 +12,7 @@ from too_many_cooks.tile import Tile
 
 class Appliance(object):
     def __init__(self, image_path, start_x, start_y):
-        super().__init__()
+        super(Appliance, self).__init__()
         self.scale = GlobalVars.scale * 4
 
         self.image = pygame.image.load(image_path)
@@ -56,7 +56,7 @@ class Appliance(object):
 class Storage(Appliance):
     def __init__(self, start_x, start_y, type, contents=None, allowed_directions=None):
         image_path = (os.path.join('sprites', '{}.png'.format(type)))
-        super().__init__(image_path, start_x, start_y)
+        super(Storage, self).__init__(image_path, start_x, start_y)
 
         self.contents = contents
         self.allowed_directions = allowed_directions
@@ -71,7 +71,7 @@ class Storage(Appliance):
 class Grill(Appliance):
     def __init__(self, start_x, start_y):
         image_path = (os.path.join('sprites', 'grill.png'))
-        super().__init__(image_path, start_x, start_y)
+        super(Grill, self).__init__(image_path, start_x, start_y)
 
     def use(self, user):
         if self.recieve_ingredients(user, ['Beef Patty', 'Bacon']):
@@ -80,7 +80,7 @@ class Grill(Appliance):
 class Fryer(Appliance):
     def __init__(self, start_x, start_y):
         image_path = (os.path.join('sprites', 'fryer.png'))
-        super().__init__(image_path, start_x, start_y)
+        super(Fryer, self).__init__(image_path, start_x, start_y)
 
     def use(self, user):
         if self.recieve_ingredients(user, ['Potato']):
@@ -93,7 +93,7 @@ class Fryer(Appliance):
 class ChoppingBlock(Appliance):
     def __init__(self, start_x, start_y):
         image_path = (os.path.join('sprites', 'chopping_block.png'))
-        super().__init__(image_path, start_x, start_y)
+        super(ChoppingBlock, self).__init__(image_path, start_x, start_y)
 
     def use(self, user):
         ingr_1, ingr_2 = user.get_ingredients()
@@ -102,7 +102,7 @@ class ChoppingBlock(Appliance):
 class Oven(Appliance):
     def __init__(self, start_x, start_y):
         image_path = (os.path.join('sprites', 'oven.png'))
-        super().__init__(image_path, start_x, start_y)
+        super(Oven, self).__init__(image_path, start_x, start_y)
 
     def use(self, user):
         ingr_1, ingr_2 = user.get_ingredients()
@@ -113,7 +113,7 @@ class Oven(Appliance):
 class CounterTop(Appliance):
     def __init__(self, start_x, start_y):
         image_path = (os.path.join('sprites', 'countertop.png'))
-        super().__init__(image_path, start_x, start_y)
+        super(CounterTop, self).__init__(image_path, start_x, start_y)
 
     def use(self, user):
         if self.recieve_ingredients(user, ['Cheese', 'Cooked Chicken','Cooked Patty', 'Burger Buns', 'Lettuce', 'Tomato', 'Fries'], keep_ingredients=True):
@@ -141,7 +141,7 @@ class CounterTop(Appliance):
                 pass
 
     def render(self, screen):
-        super().render(screen)
+        super(CounterTop, self).render(screen)
         x, y = Tile.tile_to_pixel(current_tile=self.current_tile)
 
         i = 0
@@ -160,7 +160,7 @@ class CounterTop(Appliance):
 class Stove(Appliance):
     def __init__(self, start_x, start_y):
         image_path = (os.path.join('sprites', 'stove.png'))
-        super().__init__(image_path, start_x, start_y)
+        super(Stove, self).__init__(image_path, start_x, start_y)
 
     def use(self, user):
         if self.recieve_ingredients(user, ['Tomato', 'Chicken', 'Noodles']):

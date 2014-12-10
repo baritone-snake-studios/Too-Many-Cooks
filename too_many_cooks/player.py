@@ -12,7 +12,7 @@ class Player(object):
     move_speed = base_move_speed * GlobalVars.scale
 
     def __init__(self, start_x, start_y, kitchen):
-        super().__init__()
+        super(Player, self).__init__()
         self.kitchen = kitchen
         self.scale = GlobalVars.scale * 4
 
