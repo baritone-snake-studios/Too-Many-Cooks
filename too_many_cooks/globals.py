@@ -99,7 +99,7 @@ class GlobalVars(object):
             if cls.render_count == 0:
                 cls.render_score = False
 
-            myfont = pygame.font.SysFont("system", 60)
+            myfont = pygame.font.Font("freesansbold.ttf", 60)
             label = myfont.render(str(cls.score), 1, (240, 215, 20))
             x, y = Tile.tile_to_pixel(current_tile=cls.player.current_tile, pos_in_tile=cls.player.pos_in_tile)
             x -= 10
